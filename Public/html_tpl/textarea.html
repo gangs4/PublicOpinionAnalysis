@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link href="css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" /> 
+	<link href="css/flat-ui.css" rel="stylesheet" />   
+	<script src="js/vendor/jquery.min.js"></script> 
+	<script src="js/flat-ui.min.js"></script>
+	<script src="js/highcharts.js"></script>
+	<script src="js/exporting.js"></script>
+	<style type="text/css">
+
+	body{
+    	background-color: #f5f5f5;
+    }
+
+    .container{
+    	margin-top: 30px;
+    	width: 64%;
+    	font-family: "Microsoft Yahei";
+    	font-size: 16px;
+    }
+
+	.text{
+		width: 100%;
+		margin: 0 auto;
+	}
+
+	input[type=submit].btn-block, input[type=reset].btn-block, input[type=button].btn-block {
+    	width: 20%;
+    }
+
+    .example{
+    	float: left;
+    }
+
+    .start{
+    	float: right;
+    }
+
+    .input{
+    	margin-bottom: 100px;
+    }
+
+    .people{
+    	width: 100%;
+    }
+
+    .person{
+    	padding: 3px;
+    	text-align: center;
+    }
+
+    .row {
+	    margin-right: 0px;
+	    margin-left: 0px;
+	}
+
+	.person_fill{
+		border: 1px solid #d5d5d5;
+    	border-radius: 3em;
+    	margin: 3px;
+    	background-color: white;
+	}
+	</style>
+</head>
+<body>
+<div class="container">
+	<div class="input">
+		<form role="form">
+			<div class="form-group text_group">
+				<textarea class="form-control text" rows="13"></textarea>
+			</div>
+			<input type="submit" class="example btn btn-block btn-lg btn-info" onclick="#" value="示例" >
+			<input type="submit" class="start btn btn-block btn-lg btn-primary" onclick="#" value="开始旋转" >
+		</form>
+	</div>
+	<div class="people row">
+		<volist>
+			<div class="col-md-3 person">
+				<div class="person_fill">
+					<a href="##"><{user}></a>
+				</div>
+			</div>
+			<div class="col-md-3 person">
+				<div class="person_fill">
+					<a href="##"><{user}></a>
+				</div>
+			</div>
+			<div class="col-md-3 person">
+				<div class="person_fill">
+					<a href="##"><{user}></a>
+				</div>
+			</div>
+			<div class="col-md-3 person">
+				<div class="person_fill">
+					<a href="##"><{user}></a>
+				</div>
+			</div>
+			<div class="col-md-3 person">
+				<div class="person_fill">
+					<a href="##"><{user}></a>
+				</div>
+			</div>
+			<div class="col-md-3 person">
+				<div class="person_fill">
+					<a href="##"><{user}></a>
+				</div>
+			</div>
+			<div class="col-md-3 person">
+				<div class="person_fill">
+					<a href="##"><{user}></a>
+				</div>
+			</div>
+			<div class="col-md-3 person">
+				<div class="person_fill">
+					<a href="##"><{user}></a>
+				</div>
+			</div>
+		</volist>
+	</div>
+</div>
+</body>
+</html>

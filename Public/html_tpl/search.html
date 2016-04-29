@@ -1,0 +1,157 @@
+<extend name="public:header" />
+
+<block name="content">
+<head>
+	<title></title>
+	<meta charset="utf-8" /> 
+	<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+	<link href="__PUBLIC__/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" /> 
+	<link href="__PUBLIC__/css/flat-ui.css" rel="stylesheet" />    
+	<style type="text/css">
+		body{
+			background: url(__PUBLIC__/img/4.jpg) no-repeat center center fixed; 
+			-webkit-background-size: cover; -moz-background-size: cover; 
+			-o-background-size: cover; 
+			background-size: cover;
+		}
+
+		.search{
+			margin-top: 200px;
+			margin-bottom: 30px;
+			margin-right: auto;
+			margin-left: auto;
+			width: 50%;
+			font-family: "Microsoft Yahei";
+		}
+
+		.nav-tabs {
+		    border-bottom:0px;
+		}
+
+		.nav-tabs li a {
+			font-size: 10px;
+			height: 36px;
+			width: 82px;
+		    margin-right: 2px;
+		    line-height: 1.2;
+		    border: 1px solid transparent;
+		    border-radius:0;
+		}
+
+		.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+		    color: white;
+		    cursor: default;
+		    background-color: #3498DB;
+		    border: 1px solid #3498DB;
+		    border-bottom-color: transparent;
+		}
+
+		.search-enter .row, .search-enter .feature{
+			width: 100%;
+			margin: 0 auto;
+			border-radius: 0px;
+		}
+
+		.input-group .form-control:first-child, .input-group-addon:first-child, .input-group-btn:first-child > .btn, .input-group-btn:first-child > .dropdown-toggle, .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle), .input-group .select2-search input[type="text"]:first-child {
+			border-radius: 0;
+			border: 3px solid #3498DB;
+		}
+		.input-group .form-control:last-child, .input-group-addon:last-child, .input-group-btn:last-child > .btn, .input-group-btn:last-child > .dropdown-toggle, .input-group-btn:first-child > .btn:not(:first-child), .input-group .select2-search input[type="text"]:last-child {
+			border-radius: 0;
+			border: 3px;
+			background-color: #3498DB;
+		}
+
+		#usual-search{
+			border: 0px;
+			background-color: rgba(254,254,254,0.1);
+			margin-top: 4em;
+		}
+	</style>
+</head>
+<body>
+	<div class="search container" >
+		<ul class="nav nav-tabs search-tabs" role="tablist" id="feature-tab">
+			<li class="active"><a href="#tab-1" role="tab" data-toggle="tab">搜索用户</a></li>
+			<li><a href="#tab-2" role="tab" data-toggle="tab">搜索内容</a></li>
+			<li><a href="#tab-3" role="tab" data-toggle="tab">模糊搜索</a></li>
+			<li><a href="#tab-4" role="tab" data-toggle="tab">搜索数据</a></li>
+		</ul>	
+		<div class="search-enter tab-content">
+			<div class="tab-pane active" id="tab-1">
+				<div class="row feature">
+					<div class="input-group">
+						<input class="form-control" id="navbarInput-01" type="search" placeholder="请输入要搜索的用户昵称">
+						<span class="input-group-btn">
+							<button type="submit" class="btn"><span class="fui-search" style="color:white"></span></button>
+						</span>
+					</div>
+				</div>
+				<div class="row" id="usual-search">
+					<div class="col-md-3 content">1</div>
+					<div class="col-md-3 content">con</div>
+					<div class="col-md-3 content">con</div>
+					<div class="col-md-3 content">con</div>
+				</div>
+			</div>
+			<div class="tab-pane" id="tab-2">
+				<div class="row feature">
+					<div class="input-group">
+						<input class="form-control" id="navbarInput-01" type="search" placeholder="请输入要搜索的微博内容">
+						<span class="input-group-btn">
+							<button type="submit" class="btn"><span class="fui-search" style="color:white"></span></button>
+						</span>
+					</div>
+					<div class="row" id="usual-search">
+						<div class="col-md-3 content">2</div>
+						<div class="col-md-3 content">con</div>
+						<div class="col-md-3 content">con</div>
+						<div class="col-md-3 content">con</div>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane" id="tab-3">
+				<div class="row feature">
+					<div class="input-group">
+						<input class="form-control" id="navbarInput-01" type="search" placeholder="搜索用户及微博内容">
+						<span class="input-group-btn">
+							<button type="submit" class="btn"><span class="fui-search" style="color:white"></span></button>
+						</span>
+					</div>
+					<div class="row" id="usual-search">
+						<div class="col-md-3 content">3</div>
+						<div class="col-md-3 content">con</div>
+						<div class="col-md-3 content">con</div>
+						<div class="col-md-3 content">con</div>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane" id="tab-4">
+				<div class="row feature">
+					<div class="input-group">
+						<input class="form-control" id="navbarInput-01" type="search" placeholder="搜索数据及图表">
+						<span class="input-group-btn">
+							<button type="submit" class="btn"><span class="fui-search" style="color:white"></span></button>
+						</span>
+					</div>
+				</div>
+				<div class="row" id="usual-search">
+					<div class="col-md-3 content">4</div>
+					<div class="col-md-3 content">con</div>
+					<div class="col-md-3 content">con</div>
+					<div class="col-md-3 content">con</div>
+				</div>
+			</div>
+		</div> 
+	</div>
+
+	<script src="__PUBLIC__/js/vendor/jquery.min.js">
+	</script> 
+	<script src="__PUBLIC__/js/vendor/video.js">
+	</script>
+	<script src="__PUBLIC__/js/flat-ui.min.js">
+	</script> 
+</body>
+
+</block>
+

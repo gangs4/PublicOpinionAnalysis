@@ -1,0 +1,196 @@
+﻿<extend name="public:header" />
+<block name="externLinks">
+    <link href="__PUBLIC__/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="__PUBLIC__/css/flat-ui.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/NewWeibo/index.css">
+    <script src="__PUBLIC__/js/highcharts.js"></script>
+    <script src="__PUBLIC__/js/exporting.js"></script>
+</block>
+
+<block name="content">
+
+<script type="text/javascript">
+      $(function () {
+          $('#week').highcharts({
+           title: {
+               text: '全部微博数量按周分析',
+                x: -20 //center
+            },
+            xAxis: {
+               categories: ["Sun",'Mon' , "Tue", "Wed", "Thu", "Fri", "Sat"]
+           },
+           yAxis: {
+               title: {
+                text: '数量 (个)'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+           valueSuffix: '个'
+       },
+       legend: {
+           layout: 'vertical',
+           align: 'right',
+           verticalAlign: 'middle',
+           borderWidth: 0
+       },
+       series: [{
+           name: '所有用户',
+           data: <{$weeks}>
+       }]
+   });
+          $('#day').highcharts({
+           title: {
+               text: '全部微博数量按小时分析',
+                x: -20 //center
+            },
+            xAxis: {
+               categories: ['0', '1', "2", "3", "4", "5", "6",'7',"8", "9", "10", "11", "12", "13",'14',"15", "16", "17", "18", "19", "20",'21',"22", "23"]
+           },
+           yAxis: {
+               title: {
+                text: '数量 (个)'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+           valueSuffix: '个'
+       },
+       legend: {
+           layout: 'vertical',
+           align: 'right',
+           verticalAlign: 'middle',
+           borderWidth: 0
+       },
+       series: [{
+           name: '所有用户',
+           data: <{$hours}>
+       }]
+   });
+})
+</script>
+
+<div class="every">
+    <div class="container row all">
+        <div class="list_person col-md-4">
+            <div class="person_pic col-md-2"><a target="#" href="#" title="head-img" ><img class="head-img" src="__PUBLIC__/img/sina.jpg" height="60" width="60"></a></div>
+            <div class="person_detail col-md-10">
+                <p class="person_name">
+                    <a class="person_username" target="#" href="__URL__/personal?id=<{$user.userid}>" title="username" >
+                        <{$user.username}>
+                    </a>
+                    <a target="#" href="##" title="微博认证" alt="微博认证" class="approve_co"><{$user.individualSignature}></a>
+                </p>
+                <p class="person_addr">
+                    <span class="gender" title="gender"><{$user.sex}></span>
+                    <span><{$user.location}></span>
+                    <a class="weibo-link" target="#" href="##">http://weibo.com/1234</a>
+
+                </p>
+                <p class="person_card">
+                    person_card
+                </p>
+                <p class="person_num">
+                    <span>关注<a class="Weibo_link" href="http://weibo.com/follow" target="#">num1</a></span>
+                    <span>粉丝<a class="Weibo_link" href="http://weibo.com/fans" target="#">num2</a></span>
+                    <span>微博<a class="Weibo_link" href="http://weibo.com/profile" target="#">num3</a></span></p>
+                    <div class="person_info">
+                        <p>简介：
+                            <{$data[0].individualsignature}>
+                        </p>
+                    </div>
+                    <p class="person_label">标签：
+                        <a class="Weibo_link" href="#">
+                            1
+                        </a>
+                        <a class="Weibo_link" href="#">
+                            2
+                        </a>
+                        <a class="Weibo_link" href="#">
+                            3
+                        </a>
+                    </p>
+                    <p class="person_label">职业信息：
+                        <a class="Weibo-link" href="#">
+                            label_infomation
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="weibos">
+                    <div class="weibo-content">
+                        <div class="weibo-index">
+                            <div class="info row">
+                                <div class="col-md-1">
+                                    <a href="##">
+                                        <img class="head-img" src="__PUBLIC__/img/sina.jpg" />
+                                    </a>
+                                </div>
+                                <div class="col-md-11">
+                                    <div class="user-name user-about">
+                                        <a href="__URL__/personal?id=<{$weibo.userid}>"><{$weibo.user.username}></a>
+                                    </div>
+                                    <div class="user-info user-about"> 
+                                        <ul class="ul-user-info">
+                                            <li><a href="#"><{$weibo.time}></a></li>
+                                            <li>From</li>
+                                            <li><a href="#"><{$weibo.datasource}></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="weibo-content">
+                                <p>
+                                    <{$weibo.content}>
+                                </p>
+                            </div>
+                            <div class="pictures">
+                                <div class="row">
+                                    <div class="pic col-xs-5 col-md-3">
+                                        <a href="#" class="thumbnail">
+                                            <img src="__PUBLIC__/img/1.jpg" alt="..." />
+                                        </a>
+                                    </div>
+                                    <div class="pic col-xs-5 col-md-3">
+                                        <a href="#" class="thumbnail">
+                                            <img src="__PUBLIC__/img/2.jpg" alt="..." />
+                                        </a>
+                                    </div>
+                                    <div class="pic col-xs-5 col-md-3">
+                                        <a href="#" class="thumbnail">
+                                            <img src="__PUBLIC__/img/3.jpg" alt="..." />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="btn-group btn-group3">
+                                <a class="btn btn-primary" href="#fakelink"><strong class="W_f12"><{$weibo.number1}></strong><span class="S_txt2">转发</span></a>
+                                <a class="btn btn-primary" href="#fakelink"><strong class="W_f12"><{$weibo.number2}></strong><span class="S_txt2">评论</span></a>
+                                <a class="btn btn-primary" href="#fakelink"><strong class="W_f12"><{$weibo.number3}></strong><span class="fui-heart"></span></a>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="exp">
+         <div id="week" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+         <hr/>
+         <div id="day" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+         <hr/>
+     </div>
+
+     <hr/>
+
+ </block>
+

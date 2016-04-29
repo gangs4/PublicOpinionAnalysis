@@ -1,0 +1,85 @@
+body{
+    font-family: "Microsoft Yahei", sans-serif;
+    font-size: 14px;
+    background-color: #D4D5E0;
+}
+
+a{
+    color: #666;
+}
+
+a:hover{
+    color: #555;
+}
+
+.weibo-content .head-img{
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    margin-top: 14px;
+}
+
+.ul-user-info li{
+    display: inline;
+}
+
+.personal-left .btn-group2{
+    margin: 0px -20px;
+    padding: 0 auto;
+}
+
+.personal-left .btn-group2 .btn{
+    width: 295.32px;
+    height: auto;
+    text-align: left;
+}
+
+.weibo-index{
+    border: 2px solid #27AE60;
+    margin-top: 10px;
+    width: 909px;
+    padding-bottom: 0px;
+    background-color: white;
+}
+
+.weibo-index .btn-group3{
+    margin-left: 0px;
+}
+
+.weibo-index .btn-group3 .btn{
+    width: 301.6px;
+    border-radius: 0px;
+}
+
+.weibo-index p{
+    padding: 15px;
+    font-size: 16px;
+    text-align: left;
+}
+
+.weibo-index .pictures{
+    text-align: center;
+    margin: -30px auto;
+}
+
+.row {
+    margin: 0px 15px;
+}
+
+.weibo-index .pic{
+    margin: 10px 0px;
+    padding: 0px;
+}
+
+.user-name{
+    padding-top: 15px;
+}
+
+.user-info{
+    padding-bottom: 0px;
+}
+
+
+
+
+

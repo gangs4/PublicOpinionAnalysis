@@ -1,0 +1,63 @@
+<extend name="public:header" />
+<block name="externLinks">
+    <script src="__PUBLIC__/js/highcharts.js"></script>
+    <script src="__PUBLIC__/js/exporting.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/data/index.css">
+</block>
+<block name="content">
+<meta charset="utf-8">
+	<div class="container">
+		<div class="input">
+			<form role="form" action="__URL__/analysis" method="POST">
+				<div class="form-group text_group">
+					<textarea class="form-control text" rows="13" name="text"><{$data}></textarea>
+				</div>
+				<input type="submit" class="start btn btn-block btn-lg btn-primary" onclick="#" value="开始分析" >
+			</form>
+		</div>
+		<div class="people row">
+			<volist>
+				<div class="col-md-3 person">
+					<div class="person_fill">
+						<a href="##"><{user}></a>
+					</div>
+				</div>
+				<div class="col-md-3 person">
+					<div class="person_fill">
+						<a href="##"><{user}></a>
+					</div>
+				</div>
+				<div class="col-md-3 person">
+					<div class="person_fill">
+						<a href="##"><{user}></a>
+					</div>
+				</div>
+				<div class="col-md-3 person">
+					<div class="person_fill">
+						<a href="##"><{user}></a>
+					</div>
+				</div>
+				<div class="col-md-3 person">
+					<div class="person_fill">
+						<a href="##"><{user}></a>
+					</div>
+				</div>
+				<div class="col-md-3 person">
+					<div class="person_fill">
+						<a href="##"><{user}></a>
+					</div>
+				</div>
+				<div class="col-md-3 person">
+					<div class="person_fill">
+						<a href="##"><{user}></a>
+					</div>
+				</div>
+				<div class="col-md-3 person">
+					<div class="person_fill">
+						<a href="##"><{user}></a>
+					</div>
+				</div>
+			</volist>
+		</div>
+	</div>
+</block>

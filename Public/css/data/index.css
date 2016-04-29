@@ -1,0 +1,53 @@
+
+	body{
+    	background-color: #f5f5f5;
+    }
+
+    .container{
+    	margin-top: 30px;
+    	width: 64%;
+    	font-family: "Microsoft Yahei";
+    	font-size: 16px;
+    }
+
+	.text{
+		width: 100%;
+		margin: 0 auto;
+	}
+
+	input[type=submit].btn-block, input[type=reset].btn-block, input[type=button].btn-block {
+    	width: 20%;
+    }
+
+    .example{
+    	float: left;
+    }
+
+    .start{
+    	float: right;
+    }
+
+    .input{
+    	margin-bottom: 100px;
+    }
+
+    .people{
+    	width: 100%;
+    }
+
+    .person{
+    	padding: 3px;
+    	text-align: center;
+    }
+
+    .row {
+	    margin-right: 0px;
+	    margin-left: 0px;
+	}
+
+	.person_fill{
+		border: 1px solid #d5d5d5;
+    	border-radius: 3em;
+    	margin: 3px;
+    	background-color: white;
+	}

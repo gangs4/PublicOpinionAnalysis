@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/TopicExtraction/!svn/ver/2/TopicExtraction_toShiDi/Resource/svm-resource/bak
+END
+unigram_37W.txt
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/TopicExtraction/!svn/ver/7/TopicExtraction_toShiDi/Resource/svm-resource/bak/unigram_37W.txt
+END
+30000_svm(new).model
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/TopicExtraction/!svn/ver/7/TopicExtraction_toShiDi/Resource/svm-resource/bak/30000_svm(new).model
+END
+unigram_3Wnew.txt
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/TopicExtraction/!svn/ver/7/TopicExtraction_toShiDi/Resource/svm-resource/bak/unigram_3Wnew.txt
+END
+200000_normal_libsvm.model
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/TopicExtraction/!svn/ver/7/TopicExtraction_toShiDi/Resource/svm-resource/bak/200000_normal_libsvm.model
+END
+all_NRC-HASFS.model_20141124
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/TopicExtraction/!svn/ver/2/TopicExtraction_toShiDi/Resource/svm-resource/bak/all_NRC-HASFS.model_20141124
+END
+200000_normal_liblinear.model
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/TopicExtraction/!svn/ver/7/TopicExtraction_toShiDi/Resource/svm-resource/bak/200000_normal_liblinear.model
+END
+200000_normal_unigram.txt
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/TopicExtraction/!svn/ver/7/TopicExtraction_toShiDi/Resource/svm-resource/bak/200000_normal_unigram.txt
+END
+unigram.txt_bak20141124
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/TopicExtraction/!svn/ver/2/TopicExtraction_toShiDi/Resource/svm-resource/bak/unigram.txt_bak20141124
+END
+370000_svm.model
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/TopicExtraction/!svn/ver/7/TopicExtraction_toShiDi/Resource/svm-resource/bak/370000_svm.model
+END

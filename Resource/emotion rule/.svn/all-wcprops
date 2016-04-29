@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/TopicExtraction/!svn/ver/9/TopicExtraction_toShiDi/Resource/emotion%20rule
+END
+surprise_rule.txt
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/TopicExtraction/!svn/ver/11/TopicExtraction_toShiDi/Resource/emotion%20rule/surprise_rule.txt
+END
+fear_rule.txt
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/TopicExtraction/!svn/ver/22/TopicExtraction_toShiDi/Resource/emotion%20rule/fear_rule.txt
+END
+angry_rule.txt
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/TopicExtraction/!svn/ver/22/TopicExtraction_toShiDi/Resource/emotion%20rule/angry_rule.txt
+END
+happy_rule.txt
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/TopicExtraction/!svn/ver/22/TopicExtraction_toShiDi/Resource/emotion%20rule/happy_rule.txt
+END
+sad_rule.txt
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/TopicExtraction/!svn/ver/22/TopicExtraction_toShiDi/Resource/emotion%20rule/sad_rule.txt
+END

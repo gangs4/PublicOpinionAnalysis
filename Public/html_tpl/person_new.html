@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" /> 
+	<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+	<link href="css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" /> 
+	<link href="css/flat-ui.css" rel="stylesheet" />
+	<style type="text/css">
+		body{
+			background-color: #BDC3C7;
+		}
+		.list_person{
+			background-color: #FFFFF4;
+			margin: 10px 200px;
+			border: 2px solid #7F8C8D;
+			padding: 16px 14px 17px 18px;
+		}
+		.list_person *{
+			font-family: "Microsoft YaHei";
+			font-size: 13px;
+			padding-right: 3px;
+		}
+		.list_person {
+			color: #666;
+		}
+		.clearfix {
+			display: inline-block;
+		}
+		body, .W_texta, a.W_texta, .S_txt1 {
+			color: #333;
+		}
+		body {
+			font: 12px/1.3 'Arial','Microsoft YaHei';
+			_font-family: simsun;
+			overflow-x: hidden;
+			color: #333;
+		}
+		.list_person, button, input, select, textarea {
+			font: 12px/1.125 Arial,Helvetica,sans-serif;
+			_font-family: "SimSun";
+		}
+
+		.person_detail .person_name .person_username{
+			color: #2C3E50;
+			font-size: 18px;
+		}
+
+		.person_pic img{
+			border-radius: 60px;
+		}
+
+		p {
+			font-size: 18px;
+			line-height: 1.3;
+			margin: 0 0 8px;
+		}
+
+		.weibo-content .head-img{
+			width: 60px;
+			height: 60px;
+			border-radius: 30px;
+			margin-top: 14px;
+		}
+
+		.ul-user-info li{
+			display: inline;
+		}
+
+		.personal-left .btn-group2{
+			margin: 0px -20px;
+			padding: 0 auto;
+		}
+
+		.personal-left .btn-group2 .btn{
+			width: 295.32px;
+			height: auto;
+			text-align: left;
+		}
+
+		.weibo-index{
+			border: 2px solid #27AE60;
+			margin: 10px auto;
+			width: 964px;
+			padding-bottom: 0px;
+			background-color: white;
+		}
+
+		.weibo-index .btn-group3{
+			margin-left: 0px;
+		}
+
+		.weibo-index .btn-group3 .btn{
+			width: 320px;
+			border-radius: 0px;
+		}
+
+		.weibo-index p{
+			padding: 15px;
+			font-size: 16px;
+			text-align: left;
+		}
+
+		.weibo-index .pictures{
+			text-align: center;
+			margin: -30px auto;
+		}
+
+		.row {
+			margin: 0px 15px;
+		}
+
+		.weibo-index .pic{
+			margin: 10px 0px;
+			padding: 0px;
+		}
+
+		.user-name{
+			padding-top: 15px;
+		}
+
+		.user-info{
+			padding-bottom: 0px;
+		}
+	</style>
+</head>
+<body>
+	<div class="list_person clearfix">
+		<div class="person_pic col-md-2"><a target="#" href="#" title="head-img" ><img class="head-img" src="http://tp1.sinaimg.cn/3787942764/180/5743216744/1" height="120" width="120"></a></div>
+		<div class="person_detail col-md-10">
+			<p class="person_name">
+				<a class="person_username" target="#" href="##" title="username" >
+					Airbnb
+				</a>
+				<a target="#" href="##" title="微博认证" alt="微博认证" class="approve_co"></a>
+			</p>
+			<p class="person_addr">
+				<span class="gender" title="gender"></span>
+				<span>addr</span>
+				<a class="weibo-link" target="#" href="##">http://weibo.com/1234</a>
+
+			</p>
+			<p class="person_card">
+				person_card
+			</p>
+			<p class="person_num">
+				<span>关注<a class="Weibo_link" href="http://weibo.com/follow" target="#">num1</a></span>
+				<span>粉丝<a class="Weibo_link" href="http://weibo.com/fans" target="#">num2</a></span>
+				<span>微博<a class="Weibo_link" href="http://weibo.com/profile" target="#">num3</a></span></p>
+				<div class="person_info">
+					<p>简介：
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. 
+					</p>
+				</div>
+				<p class="person_label">标签：
+					<a class="Weibo_link" href="#">
+						1
+					</a>
+					<a class="Weibo_link" href="#">
+						2
+					</a>
+					<a class="Weibo_link" href="#">
+						3
+					</a>
+				</p>
+				<p class="person_label">职业信息：
+					<a class="Weibo-link" href="#">
+						label_infomation
+					</a>
+				</p>
+			</div>
+		</div>
+		<div class="weibos" id="weibo-content">
+			<div class="weibo-content">
+				<div class="weibo-index">
+					<div class="content">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+						</p>
+					</div>
+					<div class="pictures">
+						<div class="row">
+							<div class="pic col-xs-5 col-md-3">
+								<a href="#" class="thumbnail">
+									<img src="img/1.jpg" alt="..." />
+								</a>
+							</div>
+							<div class="pic col-xs-5 col-md-3">
+								<a href="#" class="thumbnail">
+									<img src="img/2.jpg" alt="..." />
+								</a>
+							</div>
+							<div class="pic col-xs-5 col-md-3">
+								<a href="#" class="thumbnail">
+									<img src="img/3.jpg" alt="..." />
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="info">
+						<div class="col-md-12">
+							<div class="user-info user-about"> 
+								<ul class="ul-user-info">
+									<li><a href="#">time</a></li>
+									<li>From</li>
+									<li><a href="#">somewhere</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="btn-group btn-group3">
+						<a class="btn btn-primary" href="#fakelink"><strong class="W_f12">470</strong><span class="S_txt2">转发</span></a>
+						<a class="btn btn-primary" href="#fakelink"><strong class="W_f12">10568827</strong><span class="S_txt2">评论</span></a>
+						<a class="btn btn-primary" href="#fakelink"><strong class="W_f12">8732</strong><span class="fui-heart"></span></a>
+					</div> 
+				</div>
+			</div>
+		</div>
+		<script src="js/vendor/jquery.min.js"></script> 
+		<script src="js/vendor/video.js"></script>
+		<script src="js/flat-ui.min.js"></script> 
+	</body>
+	</html>

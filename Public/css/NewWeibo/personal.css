@@ -1,0 +1,49 @@
+body{
+    background-color: #BDC3C7;
+}
+.list_person{
+    width: 68%;
+    background-color: #FFFFF4;
+    margin: 5px auto;
+    border: 2px solid #7F8C8D;
+    padding: 16px 14px 17px 18px;
+}
+.list_person *{
+    font-family: "Microsoft YaHei";
+    font-size: 13px;
+    padding-right: 3px;
+}
+.list_person {
+    color: #666;
+}
+.clearfix {
+    display: inline-block;
+}
+body, .W_texta, a.W_texta, .S_txt1 {
+    color: #333;
+}
+body {
+    font: 12px/1.3 'Arial','Microsoft YaHei';
+    _font-family: simsun;
+    overflow-x: hidden;
+    color: #333;
+}
+.list_person, button, input, select, textarea {
+    font: 12px/1.125 Arial,Helvetica,sans-serif;
+    _font-family: "SimSun";
+}
+
+.person_detail .person_name .person_username{
+    color: #2C3E50;
+    font-size: 18px;
+}
+
+.person_pic img{
+    border-radius: 60px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.3;
+    margin: 0 0 8px;
+}

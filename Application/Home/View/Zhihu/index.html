@@ -1,0 +1,100 @@
+<extend name="public:header" />
+<block name="content">
+    <div class="search container" >
+        <ul class="nav nav-tabs search-tabs" role="tablist" id="feature-tab">
+            <li class="active" name = "1"><a href="#tab-1" role="tab" data-toggle="tab">搜索主题</a></li>
+            <li name = "2"><a href="#tab-2" role="tab" data-toggle="tab">搜索用户</a></li>
+        </ul>
+        <div class="search-enter tab-content">
+            <div class="tab-pane active" id="tab-1">
+                <div class="row feature">
+                    <div class="input-group">
+                        <input name="str" class="form-control" id="navbarInput-01" type="search" placeholder="请输入要搜索的话题" />
+                        <span class="input-group-btn">
+                          <button name="type" value="id" class="btn">
+                              <span class="fui-search" style="color:white"></span>
+                          </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="result">
+                    <volist name='topics' id='vol'>
+                        <div class="row" id="usual-search">
+                            <a href="__URL__/show_topic?id=<{$vol.question_id}>">
+                                <div class="col-md-6 content"><{$vol.name}></div>
+                            </a>
+                            <div class="col-md-6 content"><{$vol.answer_number}></div>
+                        </div>
+                    </volist>
+                </div>
+            </div>
+            <div class="tab-pane" id="tab-2">
+                <div class="row feature">
+                    <div class="input-group">
+                        <input name="str" class="form-control" id="navbarInput-01" type="search" placeholder="请输入要搜索的用户" />
+                        <span class="input-group-btn">
+                          <button class="btn">
+                              <span class="fui-search" style="color:white"></span>
+                          </button>
+                        </span>
+                    </div>
+                    <div class="result">
+                        <volist name='users' id='vol'>
+                            <div class="row" id="usual-search"><!--这个id重复了-->
+                                <a href="__URL__/relation?name=<{$vol.name}>&fre=<{$vol.frequent}>"><div class="col-md-6 content"><{$vol.name}></div></a>
+                                <div class="col-md-6 content"><{$vol.frequent}></div>
+                            </div>
+                        </volist>
+                    </div>
+                </div>
+            </div>
+
+            <!--下面写了一些js的改动方法，我还是比较推荐这里同步刷新处理-->
+            <script type="text/javascript">
+
+                $(function(){
+                    // 用class引用
+                    $("span button").each(function(){
+                        $(this).bind("click",function(){
+                            var tag = $(this).parents(".tab-pane");
+                            var type_tag = $(".nav-tabs").find(".active");
+                            $.get("__URL__/search", {
+                                    'str':tag.find('input').val(),
+                                    'type':type_tag.attr("name"),
+                                },
+                                function(data){
+                                    console.log(data);
+                                    tag.find(".result").find(".row").hide("fast");
+                                    if(type_tag.attr("name") == 1)
+                                    {
+                                        for (var i = data.length - 1; i >= 0; i--) {
+                                            var div = $("<div class='row' id='usual-search'></div>");
+                                            var row_data1 = $('<a href="__URL__/show_topic?id='+data[i].question_id+'"><div class="col-md-6 content">'+data[i].name+'</div></a>');
+                                            var row_data2 = $('<div class="col-md-6 content">'+data[i].answer_number+'</div>');
+                                            div.append(row_data1);
+                                            div.append(row_data2);
+                                            tag.find(".result").prepend(div).show('fast');
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        for (var i = data.length - 1; i >= 0; i--) {
+                                            var div = $("<div class='row' id='usual-search'></div>");
+                                            var row_data1 = $('<a href="__URL__/relation?name='+data[i].name+'&fre='+data[i].frequent+'"><div class="col-md-6 content">'+data[i].name+'</div></a>');
+                                            var row_data2 = $('<div class="col-md-6 content">'+data[i].frequent+'</div>');
+                                            div.append(row_data1);
+                                            div.append(row_data2);
+                                            tag.find(".result").prepend(div).show('fast');
+                                        }
+                                    }
+
+                                });
+                            }); 
+                        })  
+                    })  
+            </script>
+
+        </div>
+    </div>
+</block>

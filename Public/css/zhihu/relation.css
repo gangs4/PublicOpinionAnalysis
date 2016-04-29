@@ -1,0 +1,36 @@
+.full{
+	background-color: #fcfcfc;
+	margin-top: 10px;
+	width: 64%;
+	border: 1px solid #D0D0D0;
+}
+
+.svg{
+	border-top: 1px solid #f0f0f0;
+	padding: 5px;
+	background-color: white;
+}
+
+.person{
+	padding: 20px 0px;
+}
+
+.full a{
+	font-size: 22px;
+	color: #303030;
+}
+
+.navbar{
+	border-radius: 0px;
+}
+
+.bubbleChart {
+      min-width: 100px;
+      max-width: 700px;
+      height: 700px;
+      margin: 0 auto;
+    }
+
+.bubbleChart svg{
+      background: #f0f0f0;
+ }

@@ -1,0 +1,12 @@
+# idea IDE
+.idea
+
+# reload local config
+configFile.php
+
+# run time is useless
+Runtime
+ThinkPHP/
+
+#cacheFile
+*~

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" /> 
+	<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+	<link href="css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" /> 
+	<link href="css/flat-ui.css" rel="stylesheet" />   
+	<script src="js/vendor/jquery.min.js"></script> 
+	<script src="js/flat-ui.min.js"></script>
+	<script src="js/highcharts.js"></script>
+	<script src="js/exporting.js"></script>
+	<style type="text/css">
+		.full{
+			margin-top: 10px;
+			width: 64%;
+			border: 1px solid #A0A0A0;
+		}
+
+		.svg{
+			border-top: 1px solid #f5f5f5;
+			padding: 5px;
+		}
+
+		.person{
+			padding: 20px 0px;
+		}
+
+		a{
+			font-size: 22px;
+			color: #303030;
+		}
+	</style>
+</head>
+<body>
+	<div class="full container">
+		<div class="person">
+		<a href="##"><{username}></a>
+		</div>
+		<div class="svg">
+			
+		</div>
+	</div>
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>  
+	<script>	
+
+		var deviceWidth = document.body.clientWidth;	   
+
+		var nodes = [ { name: "user1" }, 
+		{ name: "user2" },
+		{ name: "user3" }, 
+		{ name: "user4" },
+		{ name: "user5" }, 
+		{ name: "user6" },
+		{ name: "user7" } ];
+
+		var edges = [   { source : 0 , target: 1 } , 
+		{ source : 0 , target: 2 } ,
+		{ source : 0 , target: 3 } , 
+		{ source : 0 , target: 4 } ,
+		{ source : 0 , target: 5 } , 
+		{ source : 0 , target: 6 }  ];
+
+		var dis = [13,15,6,2,7,9];	
+		
+		var width = deviceWidth * 0.61;
+		var height = 500;
+		
+		
+		var svg = d3.select("body")
+		.select(".full")
+		.select(".svg")
+		.append("svg")
+		.attr("width",width)
+		.attr("height",height);
+		
+		var force = d3.layout.force()
+		.nodes(nodes)		
+		.links(edges)		
+		.size([width,height])	
+		.linkDistance(150)	
+		.charge(-1000);	
+
+		force.start();	
+
+		console.log(nodes);
+		console.log(edges);
+		
+
+		var svg_edges = svg.selectAll("line")
+		.data(edges)
+		.enter()
+		.append("line")
+		.style("stroke","#ccc")
+		.style("stroke-width",1);
+		
+		var color = d3.scale.category20();
+
+		var svg_nodes = svg.selectAll("circle")
+		.data(nodes)
+		.enter()
+		.append("circle")
+		.attr("r",20)
+		.style("fill",function(d,i){
+			return color(i);
+		})
+		.call(force.drag);	
+
+		var svg_texts = svg.selectAll("text")
+		.data(nodes)
+		.enter()
+		.append("text")
+		.style("fill", "black")
+		.attr("dx", 20)
+		.attr("dy", 8)
+		.text(function(d){
+			return d.name;
+		});
+
+
+		force.on("tick", function(){	
+
+			svg_edges.attr("x1",function(d){ return d.source.x; })
+			.attr("y1",function(d){ return d.source.y; })
+			.attr("x2",function(d){ return d.target.x; })
+			.attr("y2",function(d){ return d.target.y; });
+
+			svg_nodes.attr("cx",function(d){ return d.x; })
+			.attr("cy",function(d){ return d.y; });
+
+			svg_texts.attr("x", function(d){ return d.x; })
+			.attr("y", function(d){ return d.y; });
+		});
+
+	</script>  
+</body>
+</html>
