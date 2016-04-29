@@ -258,9 +258,18 @@ body{
     text-align: left;
 }
 
-.content{
+.content_1{
     color: #212121;
-    font-size: 16px;
+    font-size: 16px;   
+    white-space:nowrap;
+}
+
+.content_2{
+    color: #212121;
+    font-size: 16px;   
+    width: 180px;
+    white-space:nowrap;
+    overflow:hidden;
 }
 
 .answer_number{
