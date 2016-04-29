@@ -10,3 +10,6 @@ ThinkPHP/
 
 #cacheFile
 *~
+temp
+
+Public/html_tpl/
