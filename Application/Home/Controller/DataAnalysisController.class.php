@@ -42,7 +42,8 @@ class DataAnalysisController extends Controller {
         $myfile = fopen($fileDir.$fileName.".in", "w") or die("Unable to open file!");
         fwrite($myfile, $text);
         fclose($myfile);
-
+        
+        dump($fileName);
         $lda_arr = $emotion->LDA($fileName);
 
 		dump($all_data);
