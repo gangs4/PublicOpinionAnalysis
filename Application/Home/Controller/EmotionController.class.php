@@ -11,18 +11,11 @@ class EmotionController extends Controller {
     //这是一个可重用的模块,只要更改输入就好,里面的content是要分析的文本,返回data数组
     public function analysis($content=null)
     {
-//		$m = D("answer");
-//    	$query = $m->select();
-//    	//n=3 是为了跑得快
-//    	$n = 1;
-//    	for ($i=0; $i < $n; $i++)
-//    	{
-    		//制定内容
+
 		if(isset($_GET["content"]))
 		{
 			$content = $_GET["content"];
 		}
-//		dump($content);
 		//情感分析
 		$EmotionDir = "./Public/emotion/";
 		$fileDir = "./temp/" ;
@@ -46,13 +39,6 @@ class EmotionController extends Controller {
 			$data["emotion"] = "NONE";
 		}
 
-		//打印并更新数据库
-//	    	$condition["id"] = $query[$i]["id"];
-//	    	print_r($condition);
-//		print_r($data);
-//		var_dump($ret);
-//	    	echo "</br>";
-//	    	$m->where($condition)->save($data);
 
 		fclose($myfile);
 
@@ -70,8 +56,7 @@ class EmotionController extends Controller {
 		}
 		return $data;
 
-//		echo "==================================================</br>";
-//		echo "<a href=\"/PublicOpinionAnalysis/index.php/Home/Emotion/index\"><button>return</button></a>";
+
 
     }
 
@@ -101,28 +86,61 @@ class EmotionController extends Controller {
     public function LDA()
     {
         //跑起来的条件python3，java，lunix
-        $content = "/@Copper_PKU://@eyounx_俞扬:帮贴链接：OAAAI 主席 2016年会致辞：通往稳健人工智能... 确实，这还是在封闭环境下，都会突然出现远低于预期的性能，环境再开放一点，性能还会急剧下降//@刘知远THU: 的确如此。今年AAAI特邀报告就有一个是关于人工智能鲁棒性的" ;
+        $name = $_GET["name"];
+        $fileName = $name;
         $fileDir = "./temp/";
         $LDADir = "./Public/LDA/";
-        $t = time();
-        $fileName = "".$t;
-        $myfile = fopen($fileDir.$fileName."", "w") or die("Unable to open file!");
-        fwrite($myfile, $content);
-        fclose($myfile);
+
+        //open and read file
+        $content = "";
+        $fin = fopen($fileDir . $fileName,"r");
+        while (!feof($fin))
+        {
+            $content .= fgets($fin);
+        }
+        fclose($fin);
+        var_dump($content);
+
+        $uri     = "http://api.ltp-cloud.com/analysis/?";
+        $apikey  = "T5B8m263WV5FeewQwxWd5wIn1uhTsulcGPjgkf7D";
+        $text    = $content;
+        $pattern = "ws";
+        $format  = "plain";
+        $url = ($uri
+                . "api_key=" . $apikey          . "&"
+                . "text="    . urlencode($text) . "&"
+                . "pattern=" . $pattern         . "&"
+                . "format="  . $format);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        // grab URL and pass it to the browser
+        $response = curl_exec($ch);
+        echo "<br />";
+        curl_close($ch);
+        $response = str_replace("\n", " ", $response);
+
+        $myfile2 = fopen($fileDir.$fileName.".out.txt", "w") or die("Unable to open file!");
+        fwrite($myfile2, $response);
+        fclose($myfile2);
         chmod("./temp/".$fileName, 0777);
+
+        $env = "$LANG=en_US.UTF-8";
+        $echo = "echo $LANG";
         $cut = "python3 ./Public/LDA/cut.py ".$fileDir.$fileName;
-        $dataFile = $fileName."out.txt";
+        $dataFile = $fileName.".out.txt";
         $gzip = "gzip -kf ".$fileDir.$dataFile;
-        $java =" java -Xms512m -Xmx512m -jar ./Public/LDA/lda.jar  -inf -niters 50 -twords 20  -dir ".$fileDir."-dfile ".$fileName.".out.txt.gz";
+        $java =" /opt/java/jdk1.8.0_74/bin/java -jar ./Public/LDA/lda.jar  -inf -niters 50 -twords 20  -dir ".$fileDir." -dfile ".$fileName.".out.txt.gz";
+        echo $java."<br />";
         $gunzip = "gunzip -fk ".$fileDir.$dataFile."*.gz";
-        $op = array($cut,$gzip,$java,$gunzip );
+        $op = array($gzip,$java,$gunzip );
         // print_r($op);
-        for ($i=0; $i <4 ; $i++) {
+        for ($i=0; $i <count($op) ; $i++) {
             $last_line = exec($op[$i],$ret,$ans) ;
             print_r($ret);
             unset($ret);
             echo "<br />=======================================<br />";
-            # code...
         }
         $last_line = exec($cmd,$ret,$ans);
         print_r($ret);
@@ -130,6 +148,65 @@ class EmotionController extends Controller {
         // $last_line = exec($cmd,$ret,$ans);
         // $result = unlink("".$fileDir.$fileName);
         // echo $result;
+
+        //read file and return value
+        $themeFile = $fileName.".out.txt..theta";
+        $fin = fopen($fileDir . $themeFile, "r") or die("Unable to open file");
+        $oneline = fgets($fin);
+        fclose($fin);
+        $tempArr = split(" ", $oneline);
+        array_pop($tempArr);
+        $data = array();
+        $maxNum = 0;
+        $max = -1;
+        foreach ($tempArr as $key => $value) {
+            $tempOne = split(":", $value);
+            $data[$key] = $tempOne[1];
+            if (floatval($tempOne[1])>$max)
+            {
+                $max = floatval($tempOne[1]);
+                $maxNum = $key;
+            }
+        }
+        var_dump($data);
+        $twordFile = $fileName . ".out.txt..twords";
+        $fin = fopen($fileDir . $twordFile, "r") or die("unable to open file");
+        $words = array();
+        $flag = "Topic ".$maxNum.":";
+        $nowType = "";
+        $numOfWords = 0;
+        while (! feof($fin))
+        {
+            $oneline = fgets($fin);
+            var_dump($oneline);
+            echo "<br />=======================================<br />";
+            if (strncmp("Topic ", $oneline,6))
+            {
+                $nowType = $oneline;
+                $numOfWords = 0;
+                $oneline = fgets($fin);
+            }
+            if (strcmp($nowType, $flag))
+            {
+                if ($numOfWords<10)
+                {
+                    array_push($words, $oneline);
+                    $numOfWords ++;
+                }
+            }
+            else
+            {
+                if ($numOfWords<1)
+                {
+                    array_push($words, $oneline);
+                    $numOfWords ++;
+                }
+            }
+        }
+        echo "<br />";
+        var_dump($words);
+        $result = array($data,$words);
+        return $result;
     }
     public function test()
     {

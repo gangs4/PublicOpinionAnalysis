@@ -44,10 +44,10 @@ class DataAnalysisController extends Controller {
         fclose($myfile);
         
         dump($fileName);
-        $lda_arr = $emotion->LDA($fileName);
+        // $lda_arr = $emotion->LDA($fileName);
 
 		dump($all_data);
-        dump($lda_data);
+        // dump($lda_data);
     }
 
     private function combine($time_arr,$data_arr)
