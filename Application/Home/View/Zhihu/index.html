@@ -21,7 +21,7 @@
                     <volist name='topics' id='vol'>
                         <div class="col-md-12 content_fill">
                             <a href="__URL__/show_topic?id=<{$vol.question_id}>">
-                                <div class="content">话题：<{$vol.name}></div>
+                                <div class="content_1">话题：<{$vol.name}></div>
                                 <div class="answer_number">回答数：<{$vol.answer_number}></div>
                             </a>
                         </div>
@@ -50,7 +50,7 @@
                         <volist name='users' id='vol'>
                             <div class="col-md-4 person_fill">
                                 <a href="__URL__/relation?name=<{$vol.name}>&fre=<{$vol.frequent}>">
-                                    <div class="content"><{$vol.name}></div>
+                                    <div class="content_2"><{$vol.name}></div>
                                     <div class="answer_number">回答数：<{$vol.frequent}></div>
                                 </a>
                             </div>  
@@ -78,7 +78,7 @@
                                     {
                                         for (var i = data.length - 1; i >= 0; i--) {
                                             var div = $('<div class="col-md-12 content_fill"></div>');
-                                            var row_data1 = $('<a href="__URL__/show_topic?id='+data[i].question_id+'"><div class="content">'+data[i].name+'</div></a>');
+                                            var row_data1 = $('<a href="__URL__/show_topic?id='+data[i].question_id+'"><div class="content_1">'+data[i].name+'</div></a>');
                                             var row_data2 = $('<div class="answer_number">'+'回答数：'+data[i].answer_number+'</div>');
                                             div.append(row_data1);
                                             div.append(row_data2);
@@ -89,7 +89,7 @@
                                     {
                                         for (var i = data.length - 1; i >= 0; i--) {
                                             var div = $('<div class="col-md-4 person_fill"></div>');
-                                            var row_data1 = $('<a href="__URL__/relation?name='+'话题：'+data[i].name+'&fre='+data[i].frequent+'"><div class="content">'+data[i].name+'</div></a>');
+                                            var row_data1 = $('<a href="__URL__/relation?name='+'话题：'+data[i].name+'&fre='+data[i].frequent+'"><div class="content_2">'+data[i].name+'</div></a>');
                                             var row_data2 = $('<div class="answer_number">'+'回答数：'+data[i].frequent+'</div>');
                                             div.append(row_data1);
                                         div.append(row_data2);
