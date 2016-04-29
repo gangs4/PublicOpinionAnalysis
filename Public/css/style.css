@@ -260,7 +260,10 @@ body{
 
 .content{
     color: #212121;
-    font-size: 16px;
+    font-size: 16px;   
+    width: 180px;
+    white-space:nowrap;
+    overflow:hidden;
 }
 
 .answer_number{
