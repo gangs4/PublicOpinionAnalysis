@@ -17,13 +17,13 @@
                         </span>
                     </div>
                 </div>
-                <div class="result">
+                <div class="result row">
                     <volist name='topics' id='vol'>
-                        <div class="row" id="usual-search">
+                        <div class="col-md-12 content_fill">
                             <a href="__URL__/show_topic?id=<{$vol.question_id}>">
-                                <div class="col-md-6 content"><{$vol.name}></div>
+                                <div class="content">话题：<{$vol.question_id}></div>
+                                <div class="answer_number">回答数：<{$vol.answer_number}></div>
                             </a>
-                            <div class="col-md-6 content"><{$vol.answer_number}></div>
                         </div>
                     </volist>
                 </div>
@@ -38,12 +38,22 @@
                           </button>
                         </span>
                     </div>
-                    <div class="result">
+<!--                     <div class="result">
                         <volist name='users' id='vol'>
-                            <div class="row" id="usual-search"><!--这个id重复了-->
+                            <div class="row" id="usual-search">
                                 <a href="__URL__/relation?name=<{$vol.name}>&fre=<{$vol.frequent}>"><div class="col-md-6 content"><{$vol.name}></div></a>
                                 <div class="col-md-6 content"><{$vol.frequent}></div>
                             </div>
+                        </volist>
+                    </div> -->
+                    <div class="result row">
+                        <volist name='users' id='vol'>
+                            <div class="col-md-4 person_fill">
+                                <a href="__URL__/relation?name=<{$vol.name}>&fre=<{$vol.frequent}>">
+                                    <div class="content">用户：<{$vol.name}></div>
+                                    <div class="answer_number">回答数：<{$vol.frequent}></div>
+                                </a>
+                            </div>  
                         </volist>
                     </div>
                 </div>
@@ -63,29 +73,27 @@
                                     'type':type_tag.attr("name"),
                                 },
                                 function(data){
-                                    console.log(data);
                                     tag.find(".result").find(".row").hide("fast");
                                     if(type_tag.attr("name") == 1)
                                     {
                                         for (var i = data.length - 1; i >= 0; i--) {
-                                            var div = $("<div class='row' id='usual-search'></div>");
-                                            var row_data1 = $('<a href="__URL__/show_topic?id='+data[i].question_id+'"><div class="col-md-6 content">'+data[i].name+'</div></a>');
-                                            var row_data2 = $('<div class="col-md-6 content">'+data[i].answer_number+'</div>');
+                                            var div = $('<div class="col-md-12 content_fill"></div>');
+                                            var row_data1 = $('<a href="__URL__/show_topic?id='+data[i].question_id+'"><div class="content">'+data[i].name+'</div></a>');
+                                            var row_data2 = $('<div class="answer_number">'+'回答数：'+data[i].answer_number+'</div>');
                                             div.append(row_data1);
                                             div.append(row_data2);
                                             tag.find(".result").prepend(div).show('fast');
                                         }
-
                                     }
                                     else
                                     {
                                         for (var i = data.length - 1; i >= 0; i--) {
-                                            var div = $("<div class='row' id='usual-search'></div>");
+                                            var div = $('<div class="col-md-4 person_fill"></div>');
                                             var row_data1 = $('<a href="__URL__/relation?name='+data[i].name+'&fre='+data[i].frequent+'"><div class="col-md-6 content">'+data[i].name+'</div></a>');
-                                            var row_data2 = $('<div class="col-md-6 content">'+data[i].frequent+'</div>');
+                                            var row_data2 = $('<div class="answer_number">'+data[i].frequent+'</div>');
                                             div.append(row_data1);
-                                            div.append(row_data2);
-                                            tag.find(".result").prepend(div).show('fast');
+                                        div.append(row_data2);
+                                        tag.find(".result").prepend(div).show('fast');
                                         }
                                     }
 
