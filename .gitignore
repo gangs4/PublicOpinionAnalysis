@@ -6,11 +6,11 @@ configFile.php
 
 # run time is useless
 Runtime
-ThinkPHP/
+ThinkPHP/*
 
 #cacheFile
 *~
 
-temp
+temp/*
 
-Public/html_tpl/
+Public/html_tpl/*
