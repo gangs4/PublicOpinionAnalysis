@@ -93,13 +93,13 @@ class EmotionController extends Controller {
 
         //open and read file
         $content = "";
-        $fin = fopen($fileDir . $fileName,"r");
+        $fin = fopen($fileDir . $fileName,"r") or die("unable to open file");
         while (!feof($fin))
         {
             $content .= fgets($fin);
         }
         fclose($fin);
-        var_dump($content);
+        // var_dump($content);
 
         $uri     = "http://api.ltp-cloud.com/analysis/?";
         $apikey  = "T5B8m263WV5FeewQwxWd5wIn1uhTsulcGPjgkf7D";
@@ -117,7 +117,7 @@ class EmotionController extends Controller {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
         // grab URL and pass it to the browser
         $response = curl_exec($ch);
-        echo "<br />";
+        // echo "<br />";
         curl_close($ch);
         $response = str_replace("\n", " ", $response);
 
@@ -132,18 +132,18 @@ class EmotionController extends Controller {
         $dataFile = $fileName.".out.txt";
         $gzip = "gzip -kf ".$fileDir.$dataFile;
         $java =" /opt/java/jdk1.8.0_74/bin/java -jar ./Public/LDA/lda.jar  -inf -niters 50 -twords 20  -dir ".$fileDir." -dfile ".$fileName.".out.txt.gz";
-        echo $java."<br />";
+        // echo $java."<br />";
         $gunzip = "gunzip -fk ".$fileDir.$dataFile."*.gz";
         $op = array($gzip,$java,$gunzip );
         // print_r($op);
         for ($i=0; $i <count($op) ; $i++) {
             $last_line = exec($op[$i],$ret,$ans) ;
-            print_r($ret);
+            // print_r($ret);
             unset($ret);
-            echo "<br />=======================================<br />";
+            // echo "<br />=======================================<br />";
         }
         $last_line = exec($cmd,$ret,$ans);
-        print_r($ret);
+        // print_r($ret);
         // $cmd = "rm ".$fileDir.$fileName."*";
         // $last_line = exec($cmd,$ret,$ans);
         // $result = unlink("".$fileDir.$fileName);
@@ -168,44 +168,55 @@ class EmotionController extends Controller {
                 $maxNum = $key;
             }
         }
-        var_dump($data);
+        // var_dump($data);
         $twordFile = $fileName . ".out.txt..twords";
         $fin = fopen($fileDir . $twordFile, "r") or die("unable to open file");
         $words = array();
-        $flag = "Topic ".$maxNum.":";
+        $flag = "Topic ".$maxNum.": ";
+        // var_dump($flag);
         $nowType = "";
         $numOfWords = 0;
+        // echo "<br />";
         while (! feof($fin))
         {
             $oneline = fgets($fin);
-            var_dump($oneline);
-            echo "<br />=======================================<br />";
-            if (strncmp("Topic ", $oneline,6))
+            // var_dump($oneline);
+            // echo "     ";
+            // var_dump($flag);
+            // echo "      ";
+            // var_dump(strcmp($oneline, $flag));
+            // var_dump(strncmp($oneline, $flag, 7));
+            // echo "<br />";
+            if (strncmp($oneline, $flag, 7) == 0)
             {
-                $nowType = $oneline;
-                $numOfWords = 0;
-                $oneline = fgets($fin);
-            }
-            if (strcmp($nowType, $flag))
-            {
-                if ($numOfWords<10)
-                {
+                for ($i=0; $i < 18; $i++) {
+                    # code...｀
+                    $oneline = fgets($fin);
                     array_push($words, $oneline);
-                    $numOfWords ++;
                 }
-            }
-            else
-            {
-                if ($numOfWords<1)
-                {
-                    array_push($words, $oneline);
-                    $numOfWords ++;
-                }
+                break;
             }
         }
-        echo "<br />";
-        var_dump($words);
+        // echo "<br />";
+        foreach ($words as $key => $value) {
+            // var_dump($words[$key]);
+            // echo "<br />";
+            $words[$key] = split("\t", $value) ;
+            array_shift($words[$key]);
+            $words[$key][1] = floatval($words[$key][1]);
+            // var_dump($words[$key]);
+            // echo "<br />";
+        }
+        // var_dump($words);
         $result = array($data,$words);
+        var_dump($result);
+
+        //delete the cache
+        $cmd = "rm ".$fileDir.$fileName.".* -rf";
+        exec($cmd,$ret);
+        // var_dump($ret);
+        unlink($fileDir.$fileName);
+
         return $result;
     }
     public function test()

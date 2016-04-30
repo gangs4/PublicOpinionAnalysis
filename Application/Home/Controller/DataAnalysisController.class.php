@@ -18,8 +18,6 @@ class DataAnalysisController extends Controller {
 
     	$all_data = $this->combine($time_arr[0],$data_arr);
 
-    	$this->display();
-
     	//数据都在这了，然后是要调用那个方法。。似乎要改一下。。
 //    	dump($all_data);
         // 实例化控制器
@@ -43,11 +41,19 @@ class DataAnalysisController extends Controller {
         fwrite($myfile, $text);
         fclose($myfile);
         
-        dump($fileName);
+        // dump($fileName);
         // $lda_arr = $emotion->LDA($fileName);
 
-		dump($all_data);
+		// dump($all_data);
         // dump($lda_data);
+        $lda = array(array("0.2214170692431562","0.11996779388083736" , "0.061996779388083734" , "0.09098228663446055" , "0.06924315619967794" , "0.047504025764895326" , "0.07648953301127213" , "0.25764895330112725" , "0.05475040257648953" ),
+            array(array('中国',0.0023619816463523),array('国家',0.0012201543183082),array("重要",0.0012181839519095)));
+
+        // dump($lda);
+        $this->assign('emotion',json_encode($all_data));
+        $this->assign('word',json_encode($lda[1]));
+        $this->assign('model',json_encode($lda[0]));
+        $this->display();
     }
 
     private function combine($time_arr,$data_arr)
