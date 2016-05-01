@@ -44,16 +44,62 @@ class DataAnalysisController extends Controller {
         // dump($fileName);
         // $lda_arr = $emotion->LDA($fileName);
 
-		// dump($all_data);
+		// dump($all_data);   
+        $data = $this->parzen($all_data);
         // dump($lda_data);
         $lda = array(array("0.2214170692431562","0.11996779388083736" , "0.061996779388083734" , "0.09098228663446055" , "0.06924315619967794" , "0.047504025764895326" , "0.07648953301127213" , "0.25764895330112725" , "0.05475040257648953" ),
-            array(array('中国',0.0023619816463523),array('国家',0.0012201543183082),array("重要",0.0012181839519095)));
+            array(array('中国',3619816463523),array('国家',2201543183082),array("重要",2181839519095)));
 
         // dump($lda);
-        $this->assign('emotion',json_encode($all_data));
+        $this->assign('emotion',json_encode($data));
         $this->assign('word',json_encode($lda[1]));
         $this->assign('model',json_encode($lda[0]));
         $this->display();
+    }
+
+    private function parzen($data)
+    {
+        foreach ($data as $key => $value) {
+            $time[$key] = $value['time'];
+        }
+        array_multisort($time,$data);
+        // dump($data);
+        // data按照时间排序
+        $arr = array();
+        $n = count($data);
+        $first_time = strtotime($data[0]['time']);
+        $last_time = strtotime($data[$n-1]['time']);
+
+        // dump($first_time);
+        // dump($last_time);
+
+        foreach($data as $value)
+        {
+            $arr[$value['emotion']][] = strtotime($value['time']);
+        }
+        $step = ($last_time-$first_time)/9;
+        $time = range($first_time, $last_time,$step);
+
+        $final_data = array();
+        //sigma参数设置。。。
+        $sigma = 10;
+
+        for ($i=0; $i < 10; $i++) { 
+
+            foreach ($arr as $key => $value) {
+                $sum = 0;
+                foreach ($value as $t) {
+                    // dump($t);
+                    $sum += exp(- (pow($time[$i] - $t, 2.0) / (2.0*pow($sigma,2) ) ));
+                }
+                // echo $sum;
+                $final_data[$key][$i] = 1/(sqrt(2*3.1415)*$sigma*$n)*$sum;
+            }
+        }
+        // dump($final_data);
+
+        return $final_data;
+
     }
 
     private function combine($time_arr,$data_arr)
