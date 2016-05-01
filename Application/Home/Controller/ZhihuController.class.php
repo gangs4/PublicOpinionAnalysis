@@ -44,7 +44,7 @@ class ZhihuController extends Controller {
         $this->assign('data',$data);
         $this->display('question');
     }
-
+ 
     public function relation()
     {
         $m = D('Answer');

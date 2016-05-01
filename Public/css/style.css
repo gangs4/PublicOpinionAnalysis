@@ -276,3 +276,13 @@ body{
     color: #212121;
     font-size: 12px;
 }
+
+div.jqcloud span.vertical {
+    -webkit-writing-mode: vertical-rl;
+    writing-mode: tb-rl;
+}
+
+#wordcloud{
+    padding: -10px;
+    font-family: "Microsoft YaHei";
+}
