@@ -16,4 +16,10 @@ use Think\Controller;
  */
 class BaseController extends Controller {
 
+    public function _empty($name){
+
+        $this->display('public:header');
+        echo '该方法为空';
+    }
+
 }

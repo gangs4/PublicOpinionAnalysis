@@ -18,22 +18,44 @@ class NewWeiboController extends BaseController {
      */
     public function index(){
 
-        $aWhatEverUser = D('UserInfo')->find();
-        $this->assign('user', $aWhatEverUser);
         $weiboModel = D("TotalWeibo");
-        $totalWeiboWithUser =  $weiboModel->relation(true)->find();
-        $this->assign('weibo', $totalWeiboWithUser);
-
-
         $arr_total = $weiboModel->total();
  
         $this->assign('hours',json_encode($arr_total[0]));
         $this->assign('weeks',json_encode($arr_total[1]));
 
-        $wordModel = D("HotWord");
+        // $wordModel = D("HotWord");
 
         $this->display();
     }
+
+    public function list_all()
+    {
+        // echo "list function";
+        $model_student = D("StudentInfo");
+
+        $all_student = $model_student->select();
+        $grade_info = $model_student->ShowGrade();
+        // dump($all_student);
+        $this->display();
+    }
+    public function in_grade()
+    {
+        $grade = $_GET['grade'];
+        $model_student = D("StudentInfo");
+        $grade_info = $model_student->ShowGrade($grade);
+        // dump($grade_info);
+        $this->display('list_all');
+    }
+
+    public function detail()
+    {
+        $id = $_GET['id'];
+        $this->display();
+    }
+
+//以下是似乎没用了。。。
+
 
     public function test()
     {
@@ -42,11 +64,7 @@ class NewWeiboController extends BaseController {
         dump($arr);
     }
 
-    public function _empty($name){
 
-        $this->display('public:header');
-        echo '该方法为空';
-    }
 
     public function search(){
         if(isset($_GET['type']))
@@ -92,19 +110,19 @@ class NewWeiboController extends BaseController {
         $this->display();
     }
 
-    public function detail(){
-        $contentModel = D('TotalWeibo');
-        if (isset($_GET['id']))
-        {
-            $arr = $contentModel->searchDetail($_GET['id']);
-        }
-        else
-        {
-            $arr = $contentModel->relation(true)->find();
-        }
-        $arr = array("1"=>$arr);
-        $this->assign('weibos',$arr);
-        $this->display();
-    }
+    // public function detail(){
+    //     $contentModel = D('TotalWeibo');
+    //     if (isset($_GET['id']))
+    //     {
+    //         $arr = $contentModel->searchDetail($_GET['id']);
+    //     }
+    //     else
+    //     {
+    //         $arr = $contentModel->relation(true)->find();
+    //     }
+    //     $arr = array("1"=>$arr);
+    //     $this->assign('weibos',$arr);
+    //     $this->display();
+    // }
 
 }

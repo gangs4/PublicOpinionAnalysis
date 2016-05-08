@@ -1,9 +1,9 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-class DataAnalysisController extends Controller {
+class DataAnalysisController extends BaseController {
     public function index(){
-    	$this->assign('data','something');
+    	$this->assign('data','粘贴微博文本进来~');
 		$this->display();
 
     }

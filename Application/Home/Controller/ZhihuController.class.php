@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-class ZhihuController extends Controller {
+class ZhihuController extends BaseController {
 
     //各显示6个热门
     public function index(){
