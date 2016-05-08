@@ -10,7 +10,8 @@ class ZhihuController extends Controller {
         $arr_topic = $m_question->getHotquestions(6);
 
         $m_user = D('Answer');
-        $arr_user = $m_user->getHotusers(6);
+        //参数为首页展示人数
+        $arr_user = $m_user->getHotusers(12);
 
         $this->assign('topics',$arr_topic);
         $this->assign('users',$arr_user);

@@ -44,9 +44,10 @@ class DataAnalysisController extends Controller {
         // dump($fileName);
         // $lda_arr = $emotion->LDA($fileName);
 
-		// dump($all_data);   
+		// dump($all_data);
         $data = $this->parzen($all_data);
-        // dump($lda_data);
+        //data里为展示的数据
+        // dump($data);
         $lda = array(array("0.2214170692431562","0.11996779388083736" , "0.061996779388083734" , "0.09098228663446055" , "0.06924315619967794" , "0.047504025764895326" , "0.07648953301127213" , "0.25764895330112725" , "0.05475040257648953" ),
             array(array('中国',3619816463523),array('国家',2201543183082),array("重要",2181839519095)));
 
@@ -71,18 +72,40 @@ class DataAnalysisController extends Controller {
         $last_time = strtotime($data[$n-1]['time']);
 
         // dump($first_time);
+
         // dump($last_time);
+
+        //sigma参数设置。。。
+
+        // $sigma = ($last_time-$first_time)/2;
+        $sum = 0;
 
         foreach($data as $value)
         {
-            $arr[$value['emotion']][] = strtotime($value['time']);
+            $str_time = strtotime($value['time']);
+            $arr[$value['emotion']][] = $str_time;
+            $sum += $str_time;
         }
+        $mean = $sum/$n;
+        // echo "mean = ".$mean;
+        // var_dump($arr);
+        $ss = 0;
+        foreach ($arr as $key => $value) {
+            foreach ($value as $k => $v) {
+                // var_dump("$v-$mean");
+                $ss += pow($v - $mean,2);
+            }
+        }
+        $sigma = $ss/($n-1);
+        // echo $sigma;
+        // var_dump($arr);
+
+
         $step = ($last_time-$first_time)/9;
         $time = range($first_time, $last_time,$step);
 
         $final_data = array();
-        //sigma参数设置。。。
-        $sigma = 10;
+
 
         for ($i=0; $i < 10; $i++) { 
 
