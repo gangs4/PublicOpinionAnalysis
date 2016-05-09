@@ -1,0 +1,205 @@
+.list_all{
+	display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+    justify-content: space-around;
+    background-color: ;
+}
+
+.list_all a{
+	color:#08c;
+}
+
+.list_all_left{
+	flex:1;
+	margin-right: 10px;
+}
+
+.list_all_left li a{
+	padding-left: 30px;
+}
+
+.list_all_right{
+	flex:4;
+}
+
+.person_fill_example{
+	border: 1px solid #d5d5d5;
+	border-radius: 6px;
+	min-height: 80px;
+	padding-top: 10px;
+	margin-bottom: 10px; 
+}
+
+.fill_head{
+	display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+    justify-content: space-around;
+}
+
+.head_img{
+	flex: 1;
+}
+
+.head_info{
+	flex: 2;
+}
+
+.head_info a{
+	font-size: 15px;
+	color: #080808
+}
+
+ul, menu, dir {
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 0px;
+}
+
+ul, ol {
+    margin-top: 0;
+    margin-bottom: 0px;
+}
+
+.head_detail li{
+	display: inline;
+	list-style-type: none;
+	font-size: 10px;
+	margin-right: 10px; 
+	line-height: 20px;
+}
+
+.page{
+	margin-top: 30px; 
+}
+
+.pagination{
+	float: right;
+}
+
+.list_person{
+	background-color: #FFFFF4;
+	margin: 10px 200px;
+	border: 2px solid #7F8C8D;
+	padding: 16px 14px 17px 18px;
+	width: 80%;
+}
+.list_person *{
+	font-family: "Microsoft YaHei";
+	font-size: 13px;
+	padding-right: 3px;
+}
+.list_person {
+	color: #666;
+}
+.clearfix {
+	display: inline-block;
+}
+body, .W_texta, a.W_texta, .S_txt1 {
+	color: #333;
+}
+body {
+	font: 12px/1.3 'Arial','Microsoft YaHei';
+	_font-family: simsun;
+	overflow-x: hidden;
+	color: #333;
+}
+.list_person, button, input, select, textarea {
+	font: 12px/1.125 Arial,Helvetica,sans-serif;
+	_font-family: "SimSun";
+}
+
+.person_detail .person_name .person_username{
+	color: #2C3E50;
+	font-size: 18px;
+}
+
+.person_pic img{
+	border-radius: 60px;
+}
+
+p {
+	font-size: 18px;
+	line-height: 1.3;
+	margin: 0 0 8px;
+}
+
+.weibo-content .head-img{
+	width: 60px;
+	height: 60px;
+	border-radius: 30px;
+	margin-top: 14px;
+}
+
+.ul-user-info li{
+	display: inline;
+}
+
+.personal-left .btn-group2{
+	margin: 0px -20px;
+	padding: 0 auto;
+}
+
+.personal-left .btn-group2 .btn{
+	width: 295.32px;
+	height: auto;
+	text-align: left;
+}
+
+.weibo-index{
+	border: 2px solid #27AE60;
+	margin: 10px auto;
+	width: 964px;
+	padding-bottom: 0px;
+	background-color: white;
+}
+
+.weibo-index .btn-group3{
+	margin-left: 0px;
+}
+
+.weibo-index .btn-group3 .btn{
+	width: 320px;
+	border-radius: 0px;
+}
+
+.weibo-index p{
+	padding: 15px;
+	font-size: 16px;
+	text-align: left;
+}
+
+.weibo-index .pictures{
+	text-align: center;
+	margin: -30px auto;
+}
+
+.row {
+	margin: 0px 15px;
+}
+
+.weibo-index .pic{
+	margin: 10px 0px;
+	padding: 0px;
+}
+
+.user-name{
+	padding-top: 15px;
+}
+
+.user-info{
+	padding-bottom: 0px;
+}
+
+.person a{
+	color: #0f0f0f;
+}
+
+img{
+	margin-left: 10px;
+}

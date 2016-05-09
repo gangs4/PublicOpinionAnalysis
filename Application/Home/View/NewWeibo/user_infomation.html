@@ -9,30 +9,35 @@
     <script src="__PUBLIC__/js/highcharts.js"></script>
     <script src="__PUBLIC__/js/exporting.js"></script>
 </block>
+
 <block name="content">
-		<div class="list_person row container">
-		<div class="person_pic col-md-2"><a target="#" href="#" title="head-img" ><img class="head-img" src="<{$info.avatar_hd}>" height="120" width="120"></a></div>
+		<div class="list_person clearfix">
+		<div class="person_pic col-md-2"><a target="#" href="#" title="head-img" ><img class="head-img" src="http://tp1.sinaimg.cn/3787942764/180/5743216744/1" height="120" width="120"></a></div>
 		<div class="person_detail col-md-10">
 			<p class="person_name">
 				<a class="person_username" target="#" href="##" title="username" >
-					<{$info.real_name}>
+					<{screen_name}>
 				</a>
 			</p>
 			<p class="person_addr">
-				<span>学号：<{$info.school_id}></span>
-			</p>
-			<p class="person_addr">
 				<span class="gender" title="gender"></span>
-				<span><{$info.location}></span>
-				<span>
-					生日：<{$info.date_of_birth}>
-				</span>
+				<span><{location}></span>
+				<a class="weibo-link" target="#" href="##">http://weibo.com/1234</a>
+			</p>
+			<p class="person_card">
+				person_card
 			</p>
 			<p class="person_num">
-				<span>朋友<a class="Weibo_link" href="http://weibo.com/follow" target="#"><{$info.friends_count}></a></span>
-				<span>粉丝<a class="Weibo_link" href="http://weibo.com/fans" target="#"><{$info.followers_count}></a></span>
+				<span>朋友<a class="Weibo_link" href="http://weibo.com/follow" target="#"><{friends_count}></a></span>
+				<span>粉丝<a class="Weibo_link" href="http://weibo.com/fans" target="#"><{followers_count}></a></span>
+				<span>微博<a class="Weibo_link" href="http://weibo.com/profile" target="#">num3</a></span></p>
 			<div class="person_info">
-					
+					<p>简介：
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. 
+					</p>
 				</div>
 				<p class="person_label">标签：
 					<a class="Weibo_link" href="#">

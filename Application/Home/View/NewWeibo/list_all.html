@@ -1,13 +1,63 @@
 <extend name="public:header" />
 <block name="externLinks">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link href="__PUBLIC__/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="__PUBLIC__/css/flat-ui.css" rel="stylesheet" />
     <script src="__PUBLIC__/js/jquery.js"></script>
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/NewWeibo/index.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/NewWeiBo/list_all.css">
     <script src="__PUBLIC__/js/highcharts.js"></script>
     <script src="__PUBLIC__/js/exporting.js"></script>
 </block>
 
 <block name="content">
-	
+	<div class="list_all container">
+		<div class="span3 bs-docs-sidebar list_all_left">
+	        <ul class="nav nav-list bs-docs-sidenav">
+				<li><a href="__URL__/list_all">全部&nbsp&nbsp<{$all}></a></li>
+				<li><a href="__URL__/in_grade?grade=<{$grades[4]['grade']}>">大一&nbsp&nbsp<{$grades[4]['number']}></a></li>
+				<li><a href="__URL__/in_grade?grade=<{$grades[3]['grade']}>">大二&nbsp&nbsp<{$grades[3]['number']}></a></li>
+				<li><a href="__URL__/in_grade?grade=<{$grades[2]['grade']}>">大三&nbsp&nbsp<{$grades[2]['number']}></a></li>
+				<li><a href="__URL__/in_grade?grade=<{$grades[1]['grade']}>">大四&nbsp&nbsp<{$grades[1]['number']}></a></li>
+				<li><a href="__URL__/in_grade?grade=<{$grades[0]['grade']}>">研究生&nbsp&nbsp<{$grades[0]['number']}></a></li>
+	      </ul>
+	    </div>
+
+	    <div class="list_all_right">
+	    	<div class="row">
+	    		<volist name='students' id='vol'>
+	    			<div class="col-md-4 person">
+							<a class="info_main" href="__URL__/detail?id=<{$vol.id}>">
+								<div class="person_fill_example">	
+								<div class="fill_head">
+									<div class="head_img"><img width="60" height="60" src="<{$vol.avatar_hd}>"></div>
+									<div class="head_info">
+										<p><{$vol.real_name}></p>
+										<ul class="head_detail">
+											<li><{$vol.location}></li>
+											<li><{$vol.grade}>级</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							</a>
+						</div>
+
+	    		</volist>
+
+
+	    		<div class="page">
+		    		<ul class="pagination">
+	            <li class="previous"><a href="#fakelink" class="fui-arrow-left"></a></li>
+<!-- 	            <li class="active"><a href="#fakelink">1</a></li>
+	            <li><a href="#fakelink">2</a></li>
+	            <li><a href="#fakelink">3</a></li>
+	            <li><a href="#fakelink">4</a></li>
+	            <li><a href="#fakelink">5</a></li> -->
+	            <li class="next"><a href="#fakelink" class="fui-arrow-right"></a></li>
+	          </ul>
+		    	</div>
+	    	</div>
+	    </div>
+	</div>
 </block>

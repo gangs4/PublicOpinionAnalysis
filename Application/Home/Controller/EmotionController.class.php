@@ -85,7 +85,7 @@ class EmotionController extends Controller {
     }
     public function LDA()
     {
-        //跑起来的条件python3，java，lunix
+        //跑起来的条件python3，java，linux
         $name = $_GET["name"];
         $fileName = $name;
         $fileDir = "./temp/";

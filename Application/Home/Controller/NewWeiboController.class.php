@@ -38,6 +38,11 @@ class NewWeiboController extends BaseController {
         $grade_info = $model_student->ShowGrade();
         // dump($all_student);
         // dump($grade_info);
+
+        // $this->assign('all',count($all_student));
+        $this->assign('students',$all_student);
+        $this->assign('grades',$grade_info);
+        
         $this->display();
     }
     public function in_grade()
@@ -46,7 +51,9 @@ class NewWeiboController extends BaseController {
         $model_student = D("StudentInfo");
         $student_info = $model_student->ShowGrade($grade);
         $grade_info = $model_student->ShowGrade();
-        // dump($grade_info);
+        $this->assign('students',$student_info);
+        $this->assign('grades',$grade_info);
+        // dump($student_info);
         $this->display('list_all');
     }
 
@@ -55,8 +62,13 @@ class NewWeiboController extends BaseController {
         $id = $_GET['id'];
         $ldamodel = D("Ldamodel");
         $lda = $ldamodel->select();
+        $m = D("StudentInfo");
+        $info = $m->where(array('id'=>$id))->select();
+
+        $this->assign('info',$info[0]);
         // dump($lda);
         $this->display();
+        dump($info);
     }
 
 }
