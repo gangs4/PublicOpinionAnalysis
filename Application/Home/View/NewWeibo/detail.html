@@ -54,9 +54,7 @@
 	</div>
 	<script type="text/javascript">
 		var cloud = JSON.parse('<{$word}>');
-		console.log(cloud);
 		var word_list = cloud.map((x) => ({text: x[0], weight: x[1]}));
-		console.log(word_list);
 		for (var i=0; i<word_list.length; i++)
 		{
 			if (i % 2 == 0)
@@ -76,15 +74,13 @@
 	<script type="text/javascript">
 		var bubble_data = JSON.parse('<{$model}>');
 
-		var bubble_array = ["army","sport","tech","entrepreneurship","cartoon","constellation","game","education","travelPhotoFood"];
+		var bubble_array = JSON.parse('<{$lda}>');
 
 		var bubble_temp = new Array();
 
 		for (var i = 0; i < 9; i++){
-			bubble_temp[bubble_array[i]] = parseFloat(bubble_data[i]);
+			bubble_temp[bubble_array[i]['model_name']] = parseFloat(bubble_data[i]);
 		}
-
-		console.log(bubble_temp);
 
 		var diameter = 600,                                 
 		color = d3.scale.category20();                
@@ -108,7 +104,6 @@
 		startString = startString.substring(0,startString.length-1);
 		startString+="]}";
 		var json2 = JSON.parse(startString);
-		console.log(classes(json2));
 		var node = svg.selectAll(".node")
 		.data(bubble.nodes(classes(json2))
 			.filter(function(d) { return !d.children; }))

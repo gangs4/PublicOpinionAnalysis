@@ -80,7 +80,7 @@ class NewWeiboController extends BaseController {
         $this->assign('model',json_encode($lda_pros));
         $this->assign('info',$info[0]);
 
-        $this->assign('lda',$lda);
+        $this->assign('lda',json_encode($lda));
         // dump($lda);
         $this->display();
         // dump($info);
