@@ -83,11 +83,8 @@ ul, ol {
 }
 
 .list_person{
-	background-color: #FFFFF4;
-	margin: 10px 200px;
 	border: 2px solid #7F8C8D;
 	padding: 16px 14px 17px 18px;
-	width: 80%;
 }
 .list_person *{
 	font-family: "Microsoft YaHei";
@@ -103,24 +100,15 @@ ul, ol {
 body, .W_texta, a.W_texta, .S_txt1 {
 	color: #333;
 }
-body {
-	font: 12px/1.3 'Arial','Microsoft YaHei';
-	_font-family: simsun;
-	overflow-x: hidden;
-	color: #333;
-}
+
 .list_person, button, input, select, textarea {
-	font: 12px/1.125 Arial,Helvetica,sans-serif;
-	_font-family: "SimSun";
+	font: 12px;
+	font-family: 'Microsoft YaHei';
 }
 
 .person_detail .person_name .person_username{
 	color: #2C3E50;
 	font-size: 18px;
-}
-
-.person_pic img{
-	border-radius: 60px;
 }
 
 p {
@@ -132,7 +120,6 @@ p {
 .weibo-content .head-img{
 	width: 60px;
 	height: 60px;
-	border-radius: 30px;
 	margin-top: 14px;
 }
 
@@ -204,6 +191,10 @@ img{
 	margin-left: 10px;
 }
 
+.person_pic img{
+	margin: 10px auto;
+}
+
 .student_cnt{
 	float: right;
 	position: relative;
@@ -219,4 +210,37 @@ img{
 
 .chosen{
 	background-color: #eaeaea;
+}
+
+.person_info1{
+	display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+    justify-content: space-around;
+}
+
+.list_person{
+	flex: 1;
+}
+
+.likely_friends{
+	flex: 6;
+	border: 2px solid #eaeaea;
+}
+
+.person_info2{
+	display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+    justify-content: space-around;
+}
+
+#wordcloud{
+	flex:1;
+	border: 2px solid #e1e1e1; 
+}
+
+#bubble_charts{
+	flex:1;
+	border: 2px solid #e3e3e3;
 }

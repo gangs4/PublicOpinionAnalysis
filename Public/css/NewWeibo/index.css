@@ -1,105 +1,90 @@
 .all{
-            margin: 5px auto;
-        }
+    margin: 5px auto;
+}
 
-        .list_person{
-            background-color: #FFFFF4;
-            margin: 5px auto;
-            border: 2px solid #7F8C8D;
-            padding: 16px 4px 17px 4px;
-        }
-        .list_person *{
-            font-family: "Microsoft YaHei";
-            font-size: 13px;
-            padding-right: 3px;
-        }
-        .list_person {
-            color: #666;
-        }
-        .clearfix {
-            display: inline-block;
-        }
-        body, .W_texta, a.W_texta, .S_txt1 {
-            color: #333;
-        }
-        body {
-            font: 12px/1.3 'Arial','Microsoft YaHei';
-            _font-family: simsun;
-            overflow-x: hidden;
-            color: #333;
-        }
-        .list_person, button, input, select, textarea {
-            font: 12px/1.125 Arial,Helvetica,sans-serif;
-            _font-family: "SimSun";
-        }
+.list_person {
+    color: #666;
+}
+.clearfix {
+    display: inline-block;
+}
+body, .W_texta, a.W_texta, .S_txt1 {
+    color: #333;
+}
+body {
+    font: 12px/1.3 'Arial','Microsoft YaHei';
+    _font-family: simsun;
+    overflow-x: hidden;
+    color: #333;
+}
+.list_person, button, input, select, textarea {
+    font: 12px/1.125 Arial,Helvetica,sans-serif;
+    _font-family: "SimSun";
+}
 
-        .person_detail .person_name .person_username{
-            color: #2C3E50;
-            font-size: 18px;
-        }
+.person_detail .person_name .person_username{
+    color: #2C3E50;
+    font-size: 18px;
+}
 
-        .person_pic img{
-            border-radius: 60px;
-        }
+p {
+    font-size: 18px;
+    line-height: 1.3;
+    margin: 0 0 8px;
+}
 
-        p {
-            font-size: 18px;
-            line-height: 1.3;
-            margin: 0 0 8px;
-        }
+.weibo-content .head-img{
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    margin-top: 4px;
+}
 
-        .weibo-content .head-img{
-            width: 60px;
-            height: 60px;
-            border-radius: 30px;
-            margin-top: 4px;
-        }
+.ul-user-info li{
+    display: inline;
+}
 
-        .ul-user-info li{
-            display: inline;
-        }
+.weibo-index{
+    border: 2px solid #27AE60;
+    margin-top: 10px;
+    width: 80%;
+    padding-bottom: 0px;
+    background-color: white;
+}
 
-        .weibo-index{
-            border: 2px solid #27AE60;
-            margin-top: 10px;
-            width: 80%;
-            padding-bottom: 0px;
-            background-color: white;
-        }
+.weibo-index .btn-group3{
+    margin-left: 0px;
+}
 
-        .weibo-index .btn-group3{
-            margin-left: 0px;
-        }
+.weibo-index .btn-group3 .btn{
+    width: 33%;
+    border-radius: 0px;
+}
 
-        .weibo-index .btn-group3 .btn{
-            width: 33%;
-            border-radius: 0px;
-        }
+.weibo-index p{
+    padding: 15px;
+    font-size: 16px;
+    text-align: left;
+}
 
-        .weibo-index p{
-            padding: 15px;
-            font-size: 16px;
-            text-align: left;
-        }
+.weibo-index .pictures{
+    text-align: center;
+    margin: 0 30px;
+}
 
-        .weibo-index .pictures{
-            text-align: center;
-            margin: 0 30px;
-        }
+.weibo-index .pic{
+    margin: 10px 0px;
+    padding: 0px;
+}
 
-        .weibo-index .pic{
-            margin: 10px 0px;
-            padding: 0px;
-        }
+.user-name{
+    padding-top: 15px;
+}
 
-        .user-name{
-            padding-top: 15px;
-        }
+.user-info{
+    padding-bottom: 0px;
+}
 
-        .user-info{
-            padding-bottom: 0px;
-        }
-
-        .user-name{
-            margin-left: 20px;
-        }
+.user-name{
+    margin-left: 20px;
+}
