@@ -22,6 +22,20 @@ class StudentInfoModel extends Model {
 		$arr = $this->where($data)->select();
 		return($arr);
 	}
+	public function insert_info($name,$text)
+	{
+		$condition['screen_name'] = array('like',array("%$name%"));
+		$data['keywords'] = $text;
+		// $data['lda_pro'] = $text;
+		$this->where($condition)->save($data);
+	}
+	public function insert_info2($name,$text)
+	{
+		$condition['real_name'] = array('like',array("%$name%"));
+		$data['keywords'] = $text;
+		// $data['lda_pro'] = $text;
+		$this->where($condition)->save($data);		
+	}
 	// public function getWords()
 	// {
 	// 	$arr_words = $this->field('word,weight,times')->limit(8)->order('weight desc')->select();

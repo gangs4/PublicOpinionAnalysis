@@ -56,5 +56,32 @@ class ZhihuController extends BaseController {
         $this->assign('relation', json_encode($arr));
         $this->display();
     }
+    
+    //添加关键词的脚本
+    public function shell()
+    {
+        $m = D('Answer');
+        $dir = "./temp/result.txt";
 
+        $text = file_get_contents($dir);
+        $arr = split("\n\n",$text);
+
+        foreach ($arr as $key => $value) {
+            $data = split("\n",$value);
+            $info = "";
+            foreach ($data as $k => $v) {
+                if($k!=0)
+                {
+                    $temp = split(" ",$v);
+                    $info.= $temp[0]."~".$temp[1]."|";
+                }
+                
+            }
+            // dump($info);
+            $condition['id'] = $key+1;
+            $data['keywords'] = $info;
+            $m->where($condition)->save($data);
+        }
+
+    }
 }
