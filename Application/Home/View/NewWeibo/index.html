@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/NewWeibo/index.css">
     <script src="__PUBLIC__/js/highcharts.js"></script>
     <script src="__PUBLIC__/js/exporting.js"></script>
+    <script src="__PUBLIC__/js/echarts.min.js"></script>
 </block>
 
 <block name="content">
@@ -77,10 +78,13 @@
        }]
    });
 })
+
+
 </script>
 
 
 <div class="exp">
+<div id="china" style="width: 600px;height:400px;"></div>
   <div id="week" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
   <hr/>
   <div id="day" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
