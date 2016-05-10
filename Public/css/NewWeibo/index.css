@@ -2,17 +2,6 @@
             margin: 5px auto;
         }
 
-        .list_person{
-            background-color: #FFFFF4;
-            margin: 5px auto;
-            border: 2px solid #7F8C8D;
-            padding: 16px 4px 17px 4px;
-        }
-        .list_person *{
-            font-family: "Microsoft YaHei";
-            font-size: 13px;
-            padding-right: 3px;
-        }
         .list_person {
             color: #666;
         }
@@ -36,10 +25,6 @@
         .person_detail .person_name .person_username{
             color: #2C3E50;
             font-size: 18px;
-        }
-
-        .person_pic img{
-            border-radius: 60px;
         }
 
         p {

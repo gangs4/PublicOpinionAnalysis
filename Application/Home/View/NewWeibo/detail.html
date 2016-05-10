@@ -10,33 +10,41 @@
     <script src="__PUBLIC__/js/exporting.js"></script>
 </block>
 <block name="content">
-		<div class="list_person row container">
-		<div class="person_pic col-md-2"><a target="#" href="#" title="head-img" ><img class="head-img" src="<{$info.avatar_hd}>" height="120" width="120"></a></div>
-		<div class="person_detail col-md-10">
-			<p class="person_name">
-				<a class="person_username" target="#" href="##" title="username" >
-					<{$info.real_name}>
-				</a>
-			</p>
-			<p>
-				<span>学号：<{$info.school_id}></span>
-				<span>专业：<{$info.department}></span>
-			</p>
-			<p>
-				<span>地址：<{$info.location}></span>
-			</p>
-			<p>
-				<span>
-					生日：<{$info.date_of_birth}>
-				</span>
-			</p>
-			<p class="person_num">
-				<span>朋友：<a class="Weibo_link" href="http://weibo.com/follow" target="#"><{$info.friends_count}></a></span>
-				<span>粉丝：<a class="Weibo_link" href="http://weibo.com/fans" target="#"><{$info.followers_count}></a></span>
-			<div class="person_info">
-					
-				</div>
-				
+	<div class="person_info1">
+				<div class="list_person container">
+			<div class="person_pic"><a target="#" href="#" title="head-img" ><img class="head-img" src="<{$info.avatar_hd}>" height="120" width="120"></a></div>
+			<div class="person_detail">
+				<p class="person_name">
+					<a class="person_username" target="#" href="##" title="username" >
+						<{$info.real_name}>
+					</a>
+				</p>
+				<p>
+					<span>学号：<{$info.school_id}></span>
+				</p>
+				<p>
+					<span>专业：<{$info.department}></span>
+				</p>
+				<p>
+					<span>地址：<{$info.location}></span>
+				</p>
+				<p>
+					<span>
+						生日：<{$info.date_of_birth}>
+					</span>
+				</p>
+				<p class="person_num">
+					<span>朋友：<a class="Weibo_link" href="http://weibo.com/follow" target="#"><{$info.friends_count}></a></span>
+					<span>粉丝：<a class="Weibo_link" href="http://weibo.com/fans" target="#"><{$info.followers_count}></a></span>
+				<div class="person_info">
+					<p>
+						<{$info.description}>
+					</p>		
+				</div>				
 			</div>
 		</div>
+		<div class="">
+			
+		</div>
+	</div>
 </block>
