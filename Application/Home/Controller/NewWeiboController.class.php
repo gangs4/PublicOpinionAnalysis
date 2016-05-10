@@ -29,33 +29,31 @@ class NewWeiboController extends BaseController {
         $this->display();
     }
 
-    public function list_all()
+    public function ShowList()
     {
-        // echo "list function";
         $model_student = D("StudentInfo");
+        if (isset($_GET['name'])) {
+            $name = $_GET['name'];
+            $all_student = $model_student->SearchByName($name);
+        }
+        else
+        {
+            $now_page = $_GET['page'];
+            $grade = $_GET['grade'];
+            $now_page = $_GET['page'];
+            $grade = $_GET['grade'];
+            $all_student = $model_student->ShowGrade($grade,$now_page);
+            //这里似乎可以~~~
+            $this->assign('font',$now_page-1);
+            $this->assign('next',$now_page+1);
+        }
 
-        $all_student = $model_student->select();
         $grade_info = $model_student->ShowGrade();
-        // dump($all_student);
-        // dump($grade_info);
-
-        // $this->assign('all',count($all_student));
         $this->assign('students',$all_student);
         $this->assign('grades',$grade_info);
-        
         $this->display();
     }
-    public function in_grade()
-    {
-        $grade = $_GET['grade'];
-        $model_student = D("StudentInfo");
-        $student_info = $model_student->ShowGrade($grade);
-        $grade_info = $model_student->ShowGrade();
-        $this->assign('students',$student_info);
-        $this->assign('grades',$grade_info);
-        // dump($student_info);
-        $this->display('list_all');
-    }
+
 
     public function detail()
     {
@@ -64,7 +62,6 @@ class NewWeiboController extends BaseController {
         $lda = $ldamodel->select();
         $m = D("StudentInfo");
         $info = $m->where(array('id'=>$id))->select();
-
         $this->assign('info',$info[0]);
         // dump($lda);
         $this->display();

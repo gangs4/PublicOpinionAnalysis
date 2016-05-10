@@ -4,6 +4,11 @@ use Think\Controller;
 class DataAnalysisController extends BaseController {
     public function index(){
     	$this->assign('data','粘贴微博文本进来~');
+
+        $model_student = D("StudentInfo");
+        $student_info = $model_student->ShowGrade('all',0,8);
+        // dump($arr);
+        $this->assign('students',$student_info);
 		$this->display();
 
     }

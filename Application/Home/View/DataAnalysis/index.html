@@ -16,45 +16,10 @@
 			</form>
 		</div>
 		<div class="people row">
-			<volist>
+			<volist name='students' id='vol'>
 				<div class="col-md-3 person">
 					<div class="person_fill_example">
-						<a href="##"><{user}></a>
-					</div>
-				</div>
-				<div class="col-md-3 person">
-					<div class="person_fill_example">
-						<a href="##"><{user}></a>
-					</div>
-				</div>
-				<div class="col-md-3 person">
-					<div class="person_fill_example">
-						<a href="##"><{user}></a>
-					</div>
-				</div>
-				<div class="col-md-3 person">
-					<div class="person_fill_example">
-						<a href="##"><{user}></a>
-					</div>
-				</div>
-				<div class="col-md-3 person">
-					<div class="person_fill_example">
-						<a href="##"><{user}></a>
-					</div>
-				</div>
-				<div class="col-md-3 person">
-					<div class="person_fill_example">
-						<a href="##"><{user}></a>
-					</div>
-				</div>
-				<div class="col-md-3 person">
-					<div class="person_fill_example">
-						<a href="##"><{user}></a>
-					</div>
-				</div>
-				<div class="col-md-3 person">
-					<div class="person_fill_example">
-						<a href="##"><{user}></a>
+						<a href="__MODULE__/NewWeibo/detail?id=<{$vol.id}>"><{$vol.real_name}></a>
 					</div>
 				</div>
 			</volist>
