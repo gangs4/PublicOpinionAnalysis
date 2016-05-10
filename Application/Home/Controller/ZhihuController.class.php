@@ -42,7 +42,14 @@ class ZhihuController extends BaseController {
     {
         $m = D('Question');
         $data = $m->searchByid($_GET['id']);
-        $this->assign('data',$data);
+        $answers = $data[0]['answers'];
+        //回答按照时间排序
+        foreach ($answers as $key => $value) {
+            $temp[$key] = $value['answer_time'];
+        }
+        array_multisort($temp,$answers);
+        // dump($answers);
+        // $this->assign('data',$data);
         $this->display('question');
     }
  
@@ -52,8 +59,17 @@ class ZhihuController extends BaseController {
         $name = $_GET['name'];
         $fre = $_GET['fre'];
         $arr = $m->search($name);
+        $avatar = $m->GetAvatar($name);
         array_unshift($arr, array("frequent"=>"$fre",'name'=>"$name"));
+        // dump($arr);
+        $this->assign('avatar_url',$avatar);
+
         $this->assign('relation', json_encode($arr));
+
+        // keyword
+        $keywords = $m->GetKeywords($name);
+        $this->assign('words',$keywords);
+
         $this->display();
     }
     

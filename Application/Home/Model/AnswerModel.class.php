@@ -21,9 +21,32 @@ class AnswerModel extends Model {
 		return $arr;
 	}
 
+	public function GetKeywords($str)
+	{
+		$data['name'] =array('like',array("%$str%"));
+		$arr = $this->where($data)->field('keywords')->select();
+		$keywords = array();
+		foreach ($arr as  $value) {
+			$words = split('\|',$value['keywords']);
+	        foreach ($words as $key => $v) {
+	            $data = split('~',$v);
+	            $keywords["$data[0]"] += $data[1];
+	        }
+		}
+		arsort($keywords);
+		return $keywords;
+	}
+	public function GetAvatar($str)
+	{
+		$data['name'] = array('like',array("%$str%"));
+		$array = $this->where($data)->limit(0,1)->select();
+		return $array[0]['avatar_url'];
+	}
+
+
 	public function search($str)
 	{
-		$sql = "SELECT count(*) as frequent,an2.`name` 
+		$sql = "SELECT count(*) as frequent,an2.`name`
 				FROM `answer` as an1 ,`answer` as an2 
 				WHERE an1.`question_id` = an2.`question_id` 
 					and an1.`name` = '$str'
