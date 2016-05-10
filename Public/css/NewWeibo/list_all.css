@@ -203,3 +203,20 @@ p {
 img{
 	margin-left: 10px;
 }
+
+.student_cnt{
+	float: right;
+	position: relative;
+}
+
+.search_student{
+	position: relative;
+	left: 40px;
+	width: 86%;
+	margin-top: 25px;
+	margin-bottom: 40px; 
+}
+
+.chosen{
+	background-color: #eaeaea;
+}

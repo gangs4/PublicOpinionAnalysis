@@ -13,17 +13,29 @@
 <block name="content">
 	<div class="list_all container">
 		<div class="span3 bs-docs-sidebar list_all_left">
-	        <ul class="nav nav-list bs-docs-sidenav">
-				<li><a href="__URL__/ShowList?grade=all&page=0">全部&nbsp&nbsp<{$all}></a></li>
-				<li><a href="__URL__/ShowList?grade=<{$grades[4]['grade']}>&page=0">大一&nbsp&nbsp<{$grades[4]['number']}></a></li>
-				<li><a href="__URL__/ShowList?grade=<{$grades[3]['grade']}>&page=0">大二&nbsp&nbsp<{$grades[3]['number']}></a></li>
-				<li><a href="__URL__/ShowList?grade=<{$grades[2]['grade']}>&page=0">大三&nbsp&nbsp<{$grades[2]['number']}></a></li>
-				<li><a href="__URL__/ShowList?grade=<{$grades[1]['grade']}>&page=0">大四&nbsp&nbsp<{$grades[1]['number']}></a></li>
-				<li><a href="__URL__/ShowList?grade=<{$grades[0]['grade']}>&page=0">研究生&nbsp&nbsp<{$grades[0]['number']}></a></li>
-	      </ul>
-	    </div>
+	    <ul class="nav nav-list bs-docs-sidenav list_grade">
+				<li class="grade_all"><a href="__URL__/ShowList?grade=all&page=0">全部<span class="student_cnt"><{$all}></span></a></li>
+				<li class="grade2015"><a href="__URL__/ShowList?grade=<{$grades[4]['grade']}>&page=0">大一<span class="student_cnt"><{$grades[4]['number']}></span></a></li>
+				<li class="grade2014"><a href="__URL__/ShowList?grade=<{$grades[3]['grade']}>&page=0">大二<span class="student_cnt"><{$grades[3]['number']}></span></a></li>
+				<li class="grade2013"><a href="__URL__/ShowList?grade=<{$grades[2]['grade']}>&page=0">大三<span class="student_cnt"><{$grades[2]['number']}></span></a></li>
+				<li class="grade2012"><a href="__URL__/ShowList?grade=<{$grades[1]['grade']}>&page=0">大四<span class="student_cnt"><{$grades[1]['number']}></span></a></li>
+				<li class="grade2011"><a href="__URL__/ShowList?grade=<{$grades[0]['grade']}>&page=0">研究生<span class="student_cnt"><{$grades[0]['number']}></span></a></li>
+	    </ul>
+	  </div>
 
 	    <div class="list_all_right">
+	    	<div class="row feature search_student">
+	    		<form action="__URL__/ShowList" method="get">
+	            <div class="input-group">
+	                <input name="name" class="form-control" id="navbarInput-01" type="search" placeholder="请输入要搜索的人" />
+	                <span class="input-group-btn">
+	                  <button type="submit" name="type" value="id" class="btn">
+	                      <span class="fui-search" style="color:white"></span>
+	                  </button>
+	                </span>	            		
+	            	</div>
+	        </form>
+            </div>
 	    	<div class="row">
 	    		<volist name='students' id='vol'>
 	    			<div class="col-md-4 person">
@@ -50,15 +62,39 @@
 		    		<ul class="pagination">
 		    		<!-- 搜索时name什么的 -->
 	            <li class="previous"><a href="__ACTION__?grade=<{$Think.get.grade}>&page=<{$front}>" class="fui-arrow-left"></a></li>
-<!-- 	            <li class="active"><a href="#fakelink">1</a></li>
-	            <li><a href="#fakelink">2</a></li>
-	            <li><a href="#fakelink">3</a></li>
-	            <li><a href="#fakelink">4</a></li>
-	            <li><a href="#fakelink">5</a></li> -->
+	            <!-- <li class="active"><a href="#fakelink"><{$Think['get']['page']+1}></a></li> -->
 	            <li class="next"><a href="__ACTION__?grade=<{$Think.get.grade}>&page=<{$next}>" class="fui-arrow-right"></a></li>
 	          </ul>
 		    	</div>
 	    	</div>
 	    </div>
 	</div>
+	<script type="text/javascript">
+			var temp = "<{$Think.get.name}>";
+			$(document).ready(function()
+			{
+				if (temp != "")
+				{
+					return;
+				}
+				else if (<{$students[0]['grade']}> == 2011 && <{$students[10]['grade']}> == 2011 && <{$students[5]['grade']}> == 2011) {
+					$(".grade2011").attr("class","chosen");  
+				}
+				else if(<{$students[0]['grade']}> == 2012 && <{$students[10]['grade']}>==2012 && <{$students[5]['grade']}> == 2012) {
+					$(".grade2012").attr("class","chosen"); 
+				}
+				else if(<{$students[0]['grade']}> == 2013 && <{$students[10]['grade']}>==2013 && <{$students[5]['grade']}> == 2013) {
+					$(".grade2013").attr("class","chosen"); 
+				}
+				else if(<{$students[0]['grade']}> == 2014 && <{$students[10]['grade']}>==2014 && <{$students[5]['grade']}> == 2014) {
+					$(".grade2014").attr("class","chosen"); 
+				}
+				else if(<{$students[0]['grade']}> == 2015 && <{$students[10]['grade']}>==2015 && <{$students[5]['grade']}> == 2015) {
+					$(".grade2015").attr("class","chosen"); 
+				}
+				else{
+					$(".grade_all").attr("class","chosen"); 
+				}
+			});
+	</script>
 </block>
