@@ -61,12 +61,31 @@ class NewWeiboController extends BaseController {
         $lda = $ldamodel->select();
         $m = D("StudentInfo");
         $info = $m->where(array('id'=>$id))->select();
+
+        //词
+        $words = split('\|',$info[0]['keywords']);
+        $lda_word = array();
+        foreach ($words as $key => $value) {
+            $data = split('~',$value);
+            // dump($data);
+            array_push($lda_word, $data);
+        }
+        // dump($lda_word);
+        // lda概率
+        $lda_pros = explode('|', $info[0]['lda_pro']);
+        array_pop($lda_pros);
+        // dump($lda_pros);
+
+        $this->assign('word',json_encode($lda_word));
+        $this->assign('model',json_encode($lda_pros));
         $this->assign('info',$info[0]);
+
+        $this->assign('lda',$lda);
         // dump($lda);
         $this->display();
-        dump($info);
+        // dump($info);
     }
-    
+    //以下为添加数据的脚本
     public function od()
     {
         $m = D("StudentInfo");

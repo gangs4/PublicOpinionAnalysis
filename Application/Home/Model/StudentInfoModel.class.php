@@ -22,6 +22,9 @@ class StudentInfoModel extends Model {
 		$arr = $this->where($data)->select();
 		return($arr);
 	}
+
+
+
 	public function insert_info($name,$text)
 	{
 		$condition['screen_name'] = array('like',array("%$name%"));
