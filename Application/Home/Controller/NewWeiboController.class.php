@@ -61,10 +61,101 @@ class NewWeiboController extends BaseController {
         $lda = $ldamodel->select();
         $m = D("StudentInfo");
         $info = $m->where(array('id'=>$id))->select();
+
+        //词
+        $words = split('\|',$info[0]['keywords']);
+        $lda_word = array();
+        foreach ($words as $key => $value) {
+            $data = split('~',$value);
+            // dump($data);
+            array_push($lda_word, $data);
+        }
+        // dump($lda_word);
+        // lda概率
+        $lda_pros = explode('|', $info[0]['lda_pro']);
+        array_pop($lda_pros);
+        // dump($lda_pros);
+
+        $this->assign('word',json_encode($lda_word));
+        $this->assign('model',json_encode($lda_pros));
         $this->assign('info',$info[0]);
+
+        $this->assign('lda',$lda);
         // dump($lda);
         $this->display();
-        dump($info);
+        // dump($info);
     }
+    //以下为添加数据的脚本
+    public function od()
+    {
+        $m = D("StudentInfo");
+        $dir =  "./ans/";
+        // $dir = "./the";
+        $fso = opendir($dir);
+        // echo $base_dir."<hr/>"   ;
+        while($flist=readdir($fso)){
+            // echo iconv("GBK", "UTF-8", $flist);
+            echo $flist."<br/>" ;
+            // echo type($file);
+            if(preg_match_all("/txt.seg.lda/", $flist,$match)){
+                $text = $this->loading($flist);
+                // dump($text);
+                $str = split(".txt.seg.lda",iconv("GBK", "UTF-8", $flist))[0];
 
+                // dump($str);
+                $strd = preg_replace("/\d*$/", "", $str);
+                // dump($strd);
+                $m->insert_info($strd,$text);
+                $m->insert_info2($strd,$text);
+
+            }
+            if(preg_match_all("/.txt.seg.theme/", $flist,$match)){
+                $text = $this->loadlda($flist);
+                $str = split(".txt.seg.theme",iconv("GBK", "UTF-8", $flist))[0];
+                $strd = preg_replace("/\d*$/", "", $str);
+                dump($strd);
+
+                $m->insert_info($strd,$text);
+                $m->insert_info2($strd,$text);
+                // break;
+            }
+        }
+        closedir($fso);
+    }
+    private function loadlda($filename)
+    {
+        $Dir = "./the/";
+        $file = fopen($Dir.$filename,'r') or die("Unable to open file");
+        $line = fgets($file);
+        $arr = split(" ",$line);
+        $text = "";
+        foreach ($arr as $key => $value) {
+            if($key == 9) break;
+            $text.= split(':',$value)[1]."|";
+        }
+        // dump($text);
+        return $text;
+    }
+    private function loading($filename)
+    {
+        $Dir = "./ans/";
+        // dump($Dir."____今夜阳光灿烂2227.txt.seg.lda");
+        // dump(file_exists($Dir."8Adam8260.txt.seg.lda"));
+
+        $file = fopen($Dir.$filename,'r') or die("Unable to open file");
+        $text = "";
+        while (! feof($file))
+        {
+            $oneline = fgets($file);
+            // dump($oneline);
+            $arr = split(' ',trim($oneline));
+            // dump($arr);
+            if($arr[0]=="") break;
+            $text.=$arr[0]."~".$arr[1]."|";
+        }
+        // dump($text);
+        return($text);
+        fclose($file);
+
+    }
 }
