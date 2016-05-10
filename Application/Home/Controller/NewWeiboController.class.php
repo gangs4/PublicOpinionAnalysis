@@ -54,7 +54,6 @@ class NewWeiboController extends BaseController {
         $this->display();
     }
 
-
     public function detail()
     {
         $id = $_GET['id'];
