@@ -3,8 +3,6 @@ PublicOpinionAnalysis
 
 ##Final##
 
-- 先按都我的想法来做吧。。
-
 ####在校生模块####
 
 - 总体分析

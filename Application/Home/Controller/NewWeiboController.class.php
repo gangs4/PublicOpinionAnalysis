@@ -67,24 +67,23 @@ class NewWeiboController extends BaseController {
         $lda_word = array();
         foreach ($words as $key => $value) {
             $data = split('~',$value);
-            // dump($data);
-            array_push($lda_word, $data);
+            $lda_word[] = $data;
         }
-        // dump($lda_word);
         // lda概率
-        $lda_pros = explode('|', $info[0]['lda_pro']);
-        array_pop($lda_pros);
-        // dump($lda_pros);
+        $lda_pros = $m->pickitup($info[0]['lda_pro']);
+        // 余弦相似度
+        $cosdis = $m->OneToAll($id);
+
+        $this->assign('cosdis',json_encode($cosdis));
 
         $this->assign('word',json_encode($lda_word));
         $this->assign('model',json_encode($lda_pros));
         $this->assign('info',$info[0]);
 
         $this->assign('lda',$lda);
-        // dump($lda);
         $this->display();
-        // dump($info);
     }
+
     //以下为添加数据的脚本
     public function od()
     {

@@ -84,4 +84,18 @@ class ZhihuController extends BaseController {
         }
 
     }
+    public function add_info()
+    {
+        $m = D('Answer');
+        $m2 = M('Answer2');
+        $arr = $m2->select();
+        foreach ($arr as $key => $value) {
+            $condition['id'] = $value['id'];
+            $data['answer_time'] =  $value['answer_time'];
+            $data["avatar_url"] = $value['avatar_url'];
+            $m->where($condition)->save($data);
+            // break;
+        }
+        // dump();
+    }
 }
