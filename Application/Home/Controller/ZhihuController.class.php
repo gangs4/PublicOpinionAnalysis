@@ -48,9 +48,14 @@ class ZhihuController extends BaseController {
             $temp[$key] = $value['answer_time'];
         }
         array_multisort($temp,$answers);
-        // dump($answers);
-        // $this->assign('data',$data);
+        $model_answer = D('Answer');
+        $an = $model_answer->analysis($answers);
+
+        
+        $this->assign('data',$data);
+        $this->assign('keywords',$an);
         $this->display('question');
+        // dump($an);
     }
  
     public function relation()
@@ -69,6 +74,7 @@ class ZhihuController extends BaseController {
         // keyword
         $keywords = $m->GetKeywords($name);
         $this->assign('words',$keywords);
+        // dump($keywords);
 
         $this->display();
     }

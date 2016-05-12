@@ -93,7 +93,7 @@
                                         tag.find(".result").find(".person_fill").hide("fast");
                                         for (var i = data.length - 1; i >= 0; i--) {
                                             var div = $('<div class="col-md-4 person_fill"></div>');
-                                            var row_data1 = $('<a href="__URL__/relation?name='+'话题：'+data[i].name+'&fre='+data[i].frequent+'"><div class="content_2">'+data[i].name+'</div></a>');
+                                            var row_data1 = $('<a href="__URL__/relation?name='+data[i].name+'&fre='+data[i].frequent+'"><div class="content_2">'+data[i].name+'</div></a>');
                                             var row_data2 = $('<div class="answer_number">'+'回答数：'+data[i].frequent+'</div>');
                                             div.append(row_data1);
                                         div.append(row_data2);

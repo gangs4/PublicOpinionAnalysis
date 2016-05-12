@@ -20,12 +20,9 @@ class AnswerModel extends Model {
 		$arr = $this->field('name , count(*) as frequent')->where($data)->group('name')->order('frequent desc')->select();
 		return $arr;
 	}
-
-	public function GetKeywords($str)
+	//接收一个数组中含有 分数据库中 ~ | 格式保存的关键词
+	private function pickitup($arr,$limit)
 	{
-		$data['name'] =array('like',array("%$str%"));
-		$arr = $this->where($data)->field('keywords')->select();
-		$keywords = array();
 		foreach ($arr as  $value) {
 			$words = split('\|',$value['keywords']);
 	        foreach ($words as $key => $v) {
@@ -34,6 +31,18 @@ class AnswerModel extends Model {
 	        }
 		}
 		arsort($keywords);
+		if (isset($limit)) {
+			$keywords = array_slice($keywords,0,$limit);
+		}
+
+		return $keywords;
+	}
+
+	public function GetKeywords($str)
+	{
+		$data['name'] =array('like',array("%$str%"));
+		$arr = $this->where($data)->field('keywords')->select();
+		$keywords = $this->pickitup($arr);
 		return $keywords;
 	}
 	public function GetAvatar($str)
@@ -43,6 +52,45 @@ class AnswerModel extends Model {
 		return $array[0]['avatar_url'];
 	}
 
+	public function analysis($ans)
+	{
+		$lenth = count($ans);
+		if($lenth>20)
+		{
+			$arr = $this->divier($ans,5);
+		}
+		elseif ($lenth>8) {
+			$arr = $this->divier($ans,3);
+		}
+		else
+		{
+			$arr = $this->divier($ans,2);
+		}
+		return $arr;
+	}
+	//answer 划分时间
+	private function divier($ans,$parts)
+	{
+		$lenth = count($ans);
+		$size = ceil($lenth/$parts);
+		$arr = array();
+		for ($i=0; $i < $parts; $i++) { 
+			$sum_time = 0 ;
+			$temp = array();
+			for($j=$i*$size; $j < ($i+1)*$size;$j++)
+			{
+				if(isset($ans[$j]))
+				{
+					$temp[] = $ans[$j];
+					$sum_time +=  strtotime($ans[$j]['answer_time']);					
+				}
+				else break;
+			}
+			$arr[$i]['time'] = $sum_time/count($temp);
+			$arr[$i]['keywords'] = $this->pickitup($temp,10);
+		}
+		return $arr;
+	}
 
 	public function search($str)
 	{
