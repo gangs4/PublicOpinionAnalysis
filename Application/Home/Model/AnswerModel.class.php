@@ -57,15 +57,24 @@ class AnswerModel extends Model {
 		$lenth = count($ans);
 		if($lenth>20)
 		{
-			$arr = $this->divier($ans,5);
+			$arrWord = $this->divier($ans,5);
 		}
 		elseif ($lenth>8) {
-			$arr = $this->divier($ans,3);
+			$arrWord = $this->divier($ans,3);
 		}
 		else
 		{
-			$arr = $this->divier($ans,2);
+			$arrWord = $this->divier($ans,2);
 		}
+		// dump($arrWord);
+		$arrEmotion = $this->EmotionAnalysis($ans);
+		$AnalysisData = array($arrWord,$arrEmotion);
+		return $AnalysisData;
+	}
+	private function EmotionAnalysis($ans)
+	{
+		$C = A('DataAnalysis'); 
+		$arr = $C->parzen($ans);
 		return $arr;
 	}
 	//answer 划分时间
@@ -84,7 +93,7 @@ class AnswerModel extends Model {
 					$temp[] = $ans[$j];
 					$sum_time +=  strtotime($ans[$j]['answer_time']);					
 				}
-				else break;
+				else continue;
 			}
 			$arr[$i]['time'] = $sum_time/count($temp);
 			$arr[$i]['keywords'] = $this->pickitup($temp,10);

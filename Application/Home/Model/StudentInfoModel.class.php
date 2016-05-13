@@ -23,19 +23,25 @@ class StudentInfoModel extends Model {
 		return($arr);
 	}
 
-	public function OneToAll($id)
+	public function OneToAll($id,$other)
 	{
 		$data['lda_pro'] = array('NEQ',"");
-		$data['id'] = array('NEQ',$id);
 		$data['real_name'] = array('NEQ',"NULL");
+		$data['id'] = array('NEQ',$id);
 		$arr = $this->field('id,real_name,avatar_hd,lda_pro')->where($data)->order('id ASC')->select();
-		$self = $this->where(array('id'=>$id))->select();
-		$Mself = $this->pickitup($self[0]['lda_pro']);
 		$CDArray = array();
+		if (!isset($other)) {
+			$self = $this->where(array('id'=>$id))->select();
+			$Mself = $this->pickitup($self[0]['lda_pro']);
+		}
+		else//在线传的
+		{
+			$Mself = $other;
+		}
 		foreach ($arr as $key => $value) {
 			$CDArray[] = array($value,$this->CosDistance($Mself,$this->pickitup($value['lda_pro'])));
 		}
-
+		//根据二维数据的某个值排序
 		foreach ($CDArray as $key => $value) {
             $temp[$key] = $value[1];
         }

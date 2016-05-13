@@ -43,19 +43,22 @@ class ZhihuController extends BaseController {
         $m = D('Question');
         $data = $m->searchByid($_GET['id']);
         $answers = $data[0]['answers'];
-        //回答按照时间排序
+        // 回答按照时间排序
         foreach ($answers as $key => $value) {
-            $temp[$key] = $value['answer_time'];
+            $temp[$key] = $value['time'];
         }
         array_multisort($temp,$answers);
+        // dump($answers);
+        // 获取个时间段关键词 提取情感
         $model_answer = D('Answer');
-        $an = $model_answer->analysis($answers);
+        $AnalysisData = $model_answer->analysis($answers);
 
-        
-        $this->assign('data',$data);
-        $this->assign('keywords',$an);
+        $this->assign('question_name',$data[0]['name']);
+        $this->assign('question_description',$data[0]['description']);
+        $this->assign('keywords',$AnalysisData[0]);
+        $this->assign('emotion',$AnalysisData[1]);
         $this->display('question');
-        // dump($an);
+        // dump($AnalysisData);
     }
  
     public function relation()
@@ -113,7 +116,7 @@ class ZhihuController extends BaseController {
         $arr = $m2->select();
         foreach ($arr as $key => $value) {
             $condition['id'] = $value['id'];
-            $data['answer_time'] =  $value['answer_time'];
+            $data['time'] =  $value['time'];
             $data["avatar_url"] = $value['avatar_url'];
             $m->where($condition)->save($data);
             // break;

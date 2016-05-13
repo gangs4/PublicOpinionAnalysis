@@ -22,9 +22,4 @@ class BaseController extends Controller {
         echo '该方法为空';
     }
 
-    public function fun1()
-    {
-    	return;
-    }
-
 }

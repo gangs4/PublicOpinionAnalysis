@@ -74,7 +74,7 @@ class NewWeiboController extends BaseController {
         // 余弦相似度
         $cosdis = $m->OneToAll($id);
 
-        $this->assign('cosdis',json_encode($cosdis));
+        $this->assign('friends',json_encode($cosdis));
 
         $this->assign('word',json_encode($lda_word));
         $this->assign('model',json_encode($lda_pros));
@@ -83,9 +83,10 @@ class NewWeiboController extends BaseController {
         $this->assign('lda',json_encode($lda));
 
         $this->display();
+        // dump($cosdis);
     }
 
-    //以下为添加数据的脚本
+    //以下为添加数据的脚本 php5.6
     public function od()
     {
         $m = D("StudentInfo");
@@ -100,7 +101,8 @@ class NewWeiboController extends BaseController {
             if(preg_match_all("/txt.seg.lda/", $flist,$match)){
                 $text = $this->loading($flist);
                 // dump($text);
-                $str = split(".txt.seg.lda",iconv("GBK", "UTF-8", $flist))[0];
+                $str = split(".txt.seg.lda",iconv("GBK", "UTF-8", $flist));
+                $str = $str[0];
 
                 // dump($str);
                 $strd = preg_replace("/\d*$/", "", $str);
@@ -111,7 +113,8 @@ class NewWeiboController extends BaseController {
             }
             if(preg_match_all("/.txt.seg.theme/", $flist,$match)){
                 $text = $this->loadlda($flist);
-                $str = split(".txt.seg.theme",iconv("GBK", "UTF-8", $flist))[0];
+                $str = split(".txt.seg.theme",iconv("GBK", "UTF-8", $flist));
+                $str = $str[0];
                 $strd = preg_replace("/\d*$/", "", $str);
                 dump($strd);
 

@@ -47,28 +47,32 @@ class DataAnalysisController extends BaseController {
         fclose($myfile);
         
         // dump($fileName);
-        // $lda_arr = $emotion->LDA($fileName);
+        // $lda = $emotion->LDA($fileName);
 
 		// dump($all_data);
+        foreach ($all_data as $key => $value) {
+            $time[$key] = $value['time'];
+        }
+        array_multisort($time,$all_data);
         $data = $this->parzen($all_data);
         //data里为展示的数据
-        // dump($data);
+        dump($data);
         $lda = array(array("0.2214170692431562","0.11996779388083736" , "0.061996779388083734" , "0.09098228663446055" , "0.06924315619967794" , "0.047504025764895326" , "0.07648953301127213" , "0.25764895330112725" , "0.05475040257648953" ),
             array(array('中国',3619816463523),array('国家',2201543183082),array("重要",2181839519095)));
 
         // dump($lda);
+        $Recommand = D('StudentInfo');
+        $friends = $Recommand->OneToAll(0,$lda[0]);
+        // dump($friends);
         $this->assign('emotion',json_encode($data));
         $this->assign('word',json_encode($lda[1]));
         $this->assign('model',json_encode($lda[0]));
         $this->display();
     }
 
-    private function parzen($data)
+    public function parzen($data)
     {
-        foreach ($data as $key => $value) {
-            $time[$key] = $value['time'];
-        }
-        array_multisort($time,$data);
+
         // dump($data);
         // data按照时间排序
         $arr = array();
@@ -82,7 +86,7 @@ class DataAnalysisController extends BaseController {
 
         //sigma参数设置。。。
 
-        // $sigma = ($last_time-$first_time)/2;
+        
         $sum = 0;
 
         foreach($data as $value)
@@ -101,10 +105,10 @@ class DataAnalysisController extends BaseController {
                 $ss += pow($v - $mean,2);
             }
         }
-        $sigma = $ss/($n-1);
+        // $sigma = $ss/($n-1);
+        // 效果更好一点
+        $sigma = ($last_time-$first_time)/2;
         // echo $sigma;
-        // var_dump($arr);
-
 
         $step = ($last_time-$first_time)/9;
         $time = range($first_time, $last_time,$step);
