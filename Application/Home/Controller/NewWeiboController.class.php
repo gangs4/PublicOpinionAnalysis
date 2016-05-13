@@ -75,6 +75,7 @@ class NewWeiboController extends BaseController {
         $cosdis = $m->OneToAll($id);
 
         $this->assign('cosdis',json_encode($cosdis));
+        //dump($cosdis);
 
         $this->assign('word',json_encode($lda_word));
         $this->assign('model',json_encode($lda_pros));
