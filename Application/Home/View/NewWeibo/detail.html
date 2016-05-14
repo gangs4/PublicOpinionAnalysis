@@ -45,39 +45,45 @@
 			</div>
 		</div>
 		<div class="FS">
-			<div class="likely_friends">
+			<div class="likely_friends row">
+				<div class="span">
+					<span>相似好友推荐：</span>
+				</div>		
 			</div>
 		</div>		
-	</div>
-	<script type="text/javascript">
+		<script type="text/javascript">
 		var friends_temp = JSON.parse('<{$cosdis}>');      
 		console.log(friends_temp[0][0].real_name);
 
 
         var maxL = friends_temp.length;
-        maxL = (maxL > 6) ? 6 : maxL;
+        maxL = (maxL > 12) ? 12 : maxL;
 
-        // $("likely_friends");
         var tempArray = new Array();
         for (var i = 0; i < maxL; i++) {
         	tempArray[i] = friends_temp[i][1] * 100;
+        	tempArray[i] = tempArray[i].toFixed(2);
         };
-        console.log(tempArray);
 
 		var parent_div = $(".likely_friends");
         for (var i = 0; i < maxL; i++)
         {
-        	var div = $('<div class="friend"></div>');
+        	var div = $('<div class="friend col-md-3"></div>');
+        	var div_img = $('<div class="img_div"></div>');
         	var image = $('<img src="' + friends_temp[i][0].avatar_hd + '"/>');
         	var friend_detail = $('<div class="friend_detail"></div>');
         	var fname = $('<div class="f_name"><a href="__URL__/detail?id=' + friends_temp[i][0].id + '">' + friends_temp[i][0].real_name + '</a></div>');
-        	var fsame = $('<div class"f_same">' + friends_temp[i][1] + "</div>");
+        	var fsame = $('<div class="f_same">' + "相似度：" + tempArray[i] + "%" + '</div>');
+        	div_img.append(image);
         	friend_detail.append(fname);
         	friend_detail.append(fsame);
-        	div.append(image);
+        	div.append(div_img);
         	div.append(friend_detail);
         	parent_div.append(div);
         }
+    </script>
+	</div>
+    <script type="text/javascript">
 
 		var cloud = JSON.parse('<{$word}>');
 		var word_list = cloud.map((x) => ({text: x[0], weight: x[1]}));

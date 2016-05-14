@@ -245,25 +245,21 @@ img{
 	border: 2px solid #e3e3e3;
 }
 
-.likely_friends{
-	display: flex;
-	flex-flow: row wrap;
-    align-items: stretch;
-    justify-content: space-around;
+.friend{
+	border: 2px solid #eaeaea;
+	margin: 3px;
+	width: 24%;
 }
 
-.likely_friends .friend{
-	flex: 1;
-	text-align: center;
-	margin: 0 auto;
+.friend img{ 
+	height: 60px;
+	width: 60px;
 }
 
-.likely_friends .friend img{
-	width: 90px;
-	height: 90px;
+.likely_friends .span{
+	height: 40px;
+	font-family: "Microsoft YaHei";
+	font-size: 30px;
 }
 
-.likely_friends .friend .f_name{
-
-}
 
