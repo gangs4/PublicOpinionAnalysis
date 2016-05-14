@@ -5,10 +5,14 @@
     <script src="__PUBLIC__/js/highcharts.js"></script>
     <script src="__PUBLIC__/js/exporting.js"></script>
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/zhihu/question.css">
+    <script type="text/javascript" src="__PUBLIC__/js/bubble/d3.min.js"></script>
 </block>
 <block name="content">
     <!--js等一下~~-->
     <script type="text/javascript">
+
+    console.log('<{$emotion}>');
+
 		$(function () {
 		    $('#charts').highcharts({
 		        chart: {
@@ -74,13 +78,88 @@
 	</script>  
 
 	<div class="question_charts">
-	<volist name='data' id='vol'>
 		<div class="question">
-			<h3><{$vol.name}></h3>
-			<p><{$vol.description}></p>
+			<h3><{$question_name}></h3>
+			<p><{$question_description}></p>
 		</div>
 		<div id="charts" style="width:100%; height: 400px; margin: 5px auto">
-		</div>	
-	</volist>
+		</div>
+		<div class="bubbleDIV">
+			<div class="flashwords">
+				<div class="round"></div>
+				<div class="timeAxis">
+					<div class="axis">
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
+	<script type="text/javascript">
+
+	var dat_temp = JSON.parse('<{$keywords}>');
+
+	allStartString = "{\"children\":[";
+	for (var i = 0; i < dat_temp.length; i++)
+	{
+		bub_temp = dat_temp[i]['keywords'];
+		var result = d3.entries(bub_temp);
+		var startString = "{\"children\":[";
+		result.forEach(function(dude){
+			startString+="{\"name\":\""+String(dude.key)+"\",\"size\":"+dude.value+"},";
+		});
+		startString = startString.substring(0,startString.length-1);
+		startString+="]}";
+		allStartString += startString + ",";
+	}
+	allStartString = allStartString.substring(0,allStartString.length-1);
+	allStartString += "]}";
+	var root = JSON.parse(allStartString);
+
+	function getLocalTime(nS) {     
+       return new Date(parseInt(nS) * 1000).toLocaleString();
+    }   
+	function FindStr(str1, str2){
+	    var s = str1.indexOf(str2);
+	    return(s);
+	}
+
+    var dateA = new Array(); 
+
+    for (var i = 0; i < dat_temp.length; i++)
+    {
+    	dateA[i] = getLocalTime(dat_temp[i]['time']); 
+    	dateA[i] = dateA[i].slice(0, FindStr(dateA[i]," "));
+    } 
+
+    var tempL = dateA.length;
+    dateA[tempL] = "2016/1/1";
+
+    var date_list = new Array();
+    for (var i = 0; i < dateA.length - 1; i++) {
+    	date_list[i] = new Object();
+    	date_list[i].end = dateA[i+1];
+    	date_list[i].left = String(10 + 88 * i);
+    	date_list[i].time = dateA[i];
+    	date_list[i].title = String(738 + 5 * i);
+    };
+
+    var dat = date_list;
+
+	</script>
+
+	<script type="text/javascript" src="__PUBLIC__/js/bubble_time.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/echarts_all.js"></script>
+	<script type="text/javascript">
+			 $(document).ready(function() {
+				try {
+					setPoint(dat);
+				} catch (err){}
+				try {
+		       		getRealtimeStat();
+		        } catch (err){}
+		        try {
+					getLineStat();
+				} catch (err){}
+			});
+		</script>
 </block>

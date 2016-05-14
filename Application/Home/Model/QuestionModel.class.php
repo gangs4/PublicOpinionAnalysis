@@ -30,6 +30,7 @@ class QuestionModel extends RelationModel {
 	{
     	$data['question_id'] =$str;
 		$arr = $this->where($data)->relation(true)->select();
+		// dump($arr);
 		return $arr;
 	}
 }
