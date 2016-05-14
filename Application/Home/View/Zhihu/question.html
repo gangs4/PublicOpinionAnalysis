@@ -8,73 +8,86 @@
     <script type="text/javascript" src="__PUBLIC__/js/bubble/d3.min.js"></script>
 </block>
 <block name="content">
+
     <!--js等一下~~-->
     <script type="text/javascript">
+    	function getLocalTime(nS) {     
+	        return new Date(parseInt(nS) * 1000).toLocaleString();
+	    }   
+		function FindStr(str1, str2){
+		    var s = str1.indexOf(str2);
+		    return(s);
+		}
 
-    console.log('<{$emotion}>');
+    	var temp = <{$emotion}>;
+    	
+    	var time_data = new Array();
+    	var step = (temp['end'] - temp['begin'])/9;
+    	for(var i = 0; i < 10; i++)
+    	{
+    		time_data[i] = temp['begin'] + i * step;
+    	}
+    	
+    	var time_str = new Array();
+
+    	for (var i = 0; i < 10; i++) {
+    		time_str[i] = getLocalTime(time_data[i]);
+    		time_str[i] = time_str[i].slice(0, FindStr(time_str[i]," "));
+    	};
 
 		$(function () {
-		    $('#charts').highcharts({
-		        chart: {
-		            type: 'area'
-		        },
-		        title: {
-		            text: '情感分析'
-		        },
-		        xAxis: {
-		            labels: {
-		                formatter: function() {
-		                    return this.value;
-		                }
-		            }
-		        },
-		        yAxis: {
-		            title: {
-		                text: '情感指数'
-		            },
-		            labels: {
-		                formatter: function() {
-		                    return this.value;
-		                }
-		            }
-		        },
-		        tooltip: {
-		            pointFormat: '{series.name} <b>{point.y:,.0f}</b><br/>'
-		        },
-		        plotOptions: {
-		            area: {
-		                pointStart: 1,
-		                marker: {
-		                    enabled: false,
-		                    symbol: 'circle',
-		                    radius: 2,
-		                    states: {
-		                        hover: {
-		                            enabled: true
-		                        }
-		                    }
-		                }
-		            }
-		        },
-		        series: [{
+    $('#charts').highcharts({
+        chart: {
+            type: 'area'
+        },
+        title: {
+            text: '情感走势图'
+        },
+        subtitle: {
+            text: '来源: zhihu.com'
+        },
+        xAxis: {
+            categories: time_str,
+            tickmarkPlacement: 'on',
+            title: {
+                enabled: false
+            }
+        },
+        yAxis: {
+            title: {
+                text: 'Percent'
+            }
+        },
+        tooltip: {
+            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.percentage:.1f}%</b> ({point.y:,.0f} millions)<br/>',
+            shared: true
+        },
+        plotOptions: {
+            area: {
+                stacking: 'percent',
+                lineColor: '#ffffff',
+                lineWidth: 1,
+                marker: {
+                    lineWidth: 1,
+                    lineColor: '#ffffff'
+                }
+            }
+        },
+        series: [{
 		            name: 'Happy',
-		            data: [110, 235, 369, 640,1005, 1436,
-		            		2063, 3057, 4618, 6444, 9822, 15468, 20434, 24126,27387, 29459, 31056, 31982,
-		            		32040, 31233, 29224, 27342, 26662,26956, 27912, 28999, 28965, 27826, 25579,
-		            		25722, 24826, 24605,24304, 23464, 23708, 24099, 24357, 24237, 24401, 24344,
-		            		23586,22380, 21004, 17287, 14747
-		            ]
+		            data: temp['happy\r\n']
 		        }, {
 		            name: 'Sad',
-		            data: [5, 25, 50,
-		            	120, 150, 200, 426, 4238, 5221, 6129, 660, 869, 1060, 1605, 2471, 3322,
-		            	7089, 8339, 9399, 10538, 11643, 13092, 14478,15915, 17385, 19055, 21205,
-		            	27431, 29197, 25000, 23000, 23044, 25393, 27935, 20062, 22049,23952, 25804,
-		            	21000, 39000, 37000,35000, 33000, 31000, 29000 
-		            ]
+		            data: temp['sad\r\n']
+		        }, {
+		            name: 'Fear',
+		            data: temp['fear\r\n']
+		        }, {
+		            name: 'Angry',
+		            data: temp['angry\r\n']
 		        }]
-		    });
-		});   
+    });
+});  
 	</script>  
 
 	<div class="question_charts">
@@ -97,6 +110,8 @@
 	<script type="text/javascript">
 
 	var dat_temp = JSON.parse('<{$keywords}>');
+
+	console.log(dat_temp);
 
 	allStartString = "{\"children\":[";
 	for (var i = 0; i < dat_temp.length; i++)
@@ -132,7 +147,7 @@
     } 
 
     var tempL = dateA.length;
-    dateA[tempL] = "2016/1/1";
+    dateA[tempL] = "2016/5/1";
 
     var date_list = new Array();
     for (var i = 0; i < dateA.length - 1; i++) {

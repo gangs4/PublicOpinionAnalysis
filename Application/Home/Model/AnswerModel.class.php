@@ -91,7 +91,7 @@ class AnswerModel extends Model {
 				if(isset($ans[$j]))
 				{
 					$temp[] = $ans[$j];
-					$sum_time +=  strtotime($ans[$j]['answer_time']);					
+					$sum_time +=  strtotime($ans[$j]['time']);					
 				}
 				else continue;
 			}

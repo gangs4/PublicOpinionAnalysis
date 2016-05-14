@@ -59,7 +59,7 @@ class ZhihuController extends BaseController {
 
         $this->assign('emotion',json_encode($AnalysisData[1]));
         $this->display('question');
-        dump($AnalysisData[1]);
+        //dump($AnalysisData[0]);
     }
  
     public function relation()
@@ -79,7 +79,7 @@ class ZhihuController extends BaseController {
         $keywords = $m->GetKeywords($name);
         $this->assign('words',$keywords);
         $this->display();
-        dump($keywords);
+        //dump($keywords);
     }
     
     //添加关键词的脚本
