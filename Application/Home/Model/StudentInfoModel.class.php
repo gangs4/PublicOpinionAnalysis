@@ -69,13 +69,14 @@ class StudentInfoModel extends Model {
 		return $cd;
 	}
 
-
+	//以下是跑脚本用的
 
 	public function insert_info($name,$text)
 	{
 		$condition['screen_name'] = array('like',array("%$name%"));
-		$data['keywords'] = $text;
+		// $data['keywords'] = $text;
 		// $data['lda_pro'] = $text;
+		$data['emotion_data'] = $text;
 		$this->where($condition)->save($data);
 	}
 	public function insert_info2($name,$text)

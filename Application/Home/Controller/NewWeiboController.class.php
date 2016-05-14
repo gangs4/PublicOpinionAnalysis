@@ -57,10 +57,15 @@ class NewWeiboController extends BaseController {
     public function detail()
     {
         $id = $_GET['id'];
+        //lda模块名称
         $ldamodel = D("Ldamodel");
         $lda = $ldamodel->select();
-        $m = D("StudentInfo");
-        $info = $m->where(array('id'=>$id))->select();
+        $this->assign('lda',json_encode($lda));
+
+        //个人信息
+        $model_student = D("StudentInfo");
+        $info = $model_student->where(array('id'=>$id))->select();
+        $this->assign('info',$info[0]);
 
         //词
         $words = split('\|',$info[0]['keywords']);
@@ -70,17 +75,18 @@ class NewWeiboController extends BaseController {
             $lda_word[] = $data;
         }
         // lda概率
-        $lda_pros = $m->pickitup($info[0]['lda_pro']);
-        // 余弦相似度
-        $cosdis = $m->OneToAll($id);
-
-        $this->assign('friends',json_encode($cosdis));
-
+        $lda_pros = $model_student->pickitup($info[0]['lda_pro']);
         $this->assign('word',json_encode($lda_word));
         $this->assign('model',json_encode($lda_pros));
-        $this->assign('info',$info[0]);
 
-        $this->assign('lda',json_encode($lda));
+        // 余弦相似度
+        $cosdis = $model_student->OneToAll($id);
+        $this->assign('friends',json_encode($cosdis));
+        
+        // 情感变化数据
+        $emotion_data = json_decode($info[0]['emotion_data']);
+        // dump($emotion_data);
+        $this->assign('emotion',$emotion_data);
 
         $this->display();
         // dump($cosdis);
@@ -90,7 +96,8 @@ class NewWeiboController extends BaseController {
     public function od()
     {
         $m = D("StudentInfo");
-        $dir =  "./ans/";
+        // $dir =  "./ans/";
+        $dir = "./wb/";
         // $dir = "./the";
         $fso = opendir($dir);
         // echo $base_dir."<hr/>"   ;
@@ -108,7 +115,7 @@ class NewWeiboController extends BaseController {
                 $strd = preg_replace("/\d*$/", "", $str);
                 // dump($strd);
                 $m->insert_info($strd,$text);
-                $m->insert_info2($strd,$text);
+                // $m->insert_info2($strd,$text);
 
             }
             if(preg_match_all("/.txt.seg.theme/", $flist,$match)){
@@ -119,11 +126,36 @@ class NewWeiboController extends BaseController {
                 dump($strd);
 
                 $m->insert_info($strd,$text);
-                $m->insert_info2($strd,$text);
+                // $m->insert_info2($strd,$text);
                 // break;
+            }
+            if(preg_match_all("/.txt/", $flist,$match)){
+                // $text = $this->loadlda($flist);
+                $data = $this->loadEmotionData($flist);
+                // dump(json_encode($data));
+
+                $str = split(".txt",iconv("GBK", "UTF-8", $flist));
+                $str = $str[0];
+                $strd = preg_replace("/\d*$/", "", $str);
+                // dump($strd);
+
+                $m->insert_info($strd,json_encode($data));
+                // $m->insert_info2($strd,$text);
+                break;
             }
         }
         closedir($fso);
+    }
+    public function loadEmotionData($filename)
+    {
+        $Dir = "./wb/";
+        $file = fopen($Dir.$filename,'r') or die("Unable to open file");
+        // $text = fgets($file);
+        $text = file_get_contents($Dir.$filename);
+        $C = A('DataAnalysis');
+        $data = $C->analysis_emotion($text);
+        // dump($text);
+        return $data;
     }
     private function loadlda($filename)
     {
