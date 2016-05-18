@@ -13,6 +13,9 @@ class DataAnalysisController extends BaseController {
 
     }
 
+    public function start(){
+        $this->display('start');
+    }
 
     public function analysis()
     {

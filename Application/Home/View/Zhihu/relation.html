@@ -9,8 +9,8 @@
     <script src="__PUBLIC__/js/bubble/bubble-chart.js"></script>
     <script src="__PUBLIC__/js/bubble/central-click.js"></script>
     <script src="__PUBLIC__/js/bubble/lines.js"></script>
-
-
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jqcloud.css" />
+    <script type="text/javascript" src="__PUBLIC__/js/jqcloud-1.0.4.js"></script>
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/zhihu/relation.css">
 </block>
 
@@ -116,5 +116,32 @@
 	</script>  
 
 	</div>
-	
+	<div id="wordcloud" style="background-color:white;margin: 0 auto; height: 600px; width: 700px; font-family:Microsoft Yahei"></div>
+	<script type="text/javascript">
+
+		var cloud = JSON.parse('<{$words}>');
+		console.log(cloud);
+		//var word_lists = cloud.map((x) => ({text: x, weight: cloud[x]}));
+		var word_lists = new Array()
+		var temp = 0
+		for (var x in cloud)
+		{
+			word_lists[temp] = {text: x, weight: cloud[x]};
+			console.log(x);
+			console.log(cloud[x]);
+			temp++;
+		}
+		console.log(word_lists);
+		for (var i=0; i<word_lists.length; i++)
+		{
+			if (i % 2 == 0)
+			{
+				word_lists[i] = {text: word_lists[i].text, weight: word_lists[i].weight, html:{"class": "vertical"}};
+			}
+		}
+
+		$(function() {
+			$("#wordcloud").jQCloud(word_lists);
+		});
+	</script>
  </block>

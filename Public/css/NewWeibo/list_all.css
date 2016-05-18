@@ -23,12 +23,21 @@
 	flex:4;
 }
 
+.list_grade{
+	background-color: #FFFFFF;
+}
+
+.pagination {
+    background: #FAAC58;
+}
+
 .person_fill_example{
 	border: 1px solid #d5d5d5;
 	border-radius: 6px;
 	min-height: 80px;
 	padding-top: 10px;
 	margin-bottom: 10px; 
+	background-color: #FFFFFF;
 }
 
 .fill_head{
@@ -85,6 +94,7 @@ ul, ol {
 .list_person{
 	border: 2px solid #7F8C8D;
 	padding: 16px 14px 17px 18px;
+	background-color: #fff;
 }
 .list_person *{
 	font-family: "Microsoft YaHei";
@@ -226,6 +236,7 @@ img{
 .FS{
 	flex: 6;
 	border: 2px solid #eaeaea;
+	background-color: #fff;
 }
 
 .person_info2{

@@ -77,7 +77,7 @@ class ZhihuController extends BaseController {
 
         // keyword
         $keywords = $m->GetKeywords($name);
-        $this->assign('words',$keywords);
+        $this->assign('words',json_encode($keywords));
         $this->display();
         //dump($keywords);
     }

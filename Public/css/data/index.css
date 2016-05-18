@@ -51,3 +51,16 @@
     	margin: 3px;
     	background-color: white;
 	}
+
+    .go{
+        position: relative;
+        top: 30px;
+    }
+
+    .prego{
+        background-color: rgba(255,255,255,0.4);
+        color: #080808;
+        height: 360px;
+        position: relative;
+        top: 20px;
+    }
