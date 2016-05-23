@@ -5,13 +5,19 @@
     width: 100%;
     border: none;
     border-radius: 0px;
-    background-color: #2C3E50;
+    background-color: #0086D1;
 }
 
 .navbar-inverse .navbar-nav > .dropdown > a .caret
 {
     border-top-color: white;
     border-bottom-color: white;
+}
+
+.dropdown-menu > li > a {
+    padding: 8px 16px;
+    line-height: 1.429;
+    color: #00abeb;
 }
 
 .fake
@@ -286,3 +292,44 @@ div.jqcloud span.vertical {
     padding: -10px;
     font-family: "Microsoft YaHei";
 }
+
+.header_top{
+    height: 90px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#1D2088), to(#0086D1));
+           -webkit-background-origin: padding; 
+           -webkit-background-clip: content;
+}
+
+.hitlogo{
+    background:url("../img/HITlogo.png");
+    background-repeat:no-repeat;
+    height:80px;
+    width:314px;
+    text-align:center;
+    position: relative;
+    left: 40px;
+    top: 10px;
+}
+
+.navbar-inverse .navbar-collapse {
+    background-color: #0086D1;
+    border-width: 0px;
+}
+
+.ourlogo{
+    text-align:center;
+    position: relative;
+    left: -50px;
+    top: 36px;
+    font-size: 26px;
+    color: #FFF;
+}
+
+.ourlogo a{
+    color: white;
+}
+
+.ourlogo a:hover{
+    color: white;
+}
+

@@ -6,6 +6,7 @@
     <script src="__PUBLIC__/js/jquery.js"></script>
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/NewWeibo/index.css">
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/NewWeiBo/list_all.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
     <script src="__PUBLIC__/js/highcharts.js"></script>
     <script src="__PUBLIC__/js/exporting.js"></script>
 </block>
@@ -15,10 +16,10 @@
 		<div class="span3 bs-docs-sidebar list_all_left">
 	    <ul class="nav nav-list bs-docs-sidenav list_grade">
 				<li class="grade_all"><a href="__URL__/ShowList?grade=all&page=0">全部<span class="student_cnt"><{$all}></span></a></li>
-				<li class="grade2015"><a href="__URL__/ShowList?grade=<{$grades[4]['grade']}>&page=0">大一<span class="student_cnt"><{$grades[4]['number']}></span></a></li>
-				<li class="grade2014"><a href="__URL__/ShowList?grade=<{$grades[3]['grade']}>&page=0">大二<span class="student_cnt"><{$grades[3]['number']}></span></a></li>
-				<li class="grade2013"><a href="__URL__/ShowList?grade=<{$grades[2]['grade']}>&page=0">大三<span class="student_cnt"><{$grades[2]['number']}></span></a></li>
-				<li class="grade2012"><a href="__URL__/ShowList?grade=<{$grades[1]['grade']}>&page=0">大四<span class="student_cnt"><{$grades[1]['number']}></span></a></li>
+				<li class="grade2015"><a href="__URL__/ShowList?grade=<{$grades[4]['grade']}>&page=0">大一<span class="student_cnt">312</span></a></li>
+				<li class="grade2014"><a href="__URL__/ShowList?grade=<{$grades[3]['grade']}>&page=0">大二<span class="student_cnt">292</span></a></li>
+				<li class="grade2013"><a href="__URL__/ShowList?grade=<{$grades[2]['grade']}>&page=0">大三<span class="student_cnt">246</span></a></li>
+				<li class="grade2012"><a href="__URL__/ShowList?grade=<{$grades[1]['grade']}>&page=0">大四<span class="student_cnt">144</span></a></li>
 				<li class="grade2011"><a href="__URL__/ShowList?grade=<{$grades[0]['grade']}>&page=0">研究生<span class="student_cnt"><{$grades[0]['number']}></span></a></li>
 	    </ul>
 	  </div>
@@ -71,6 +72,7 @@
 	</div>
 	<script type="text/javascript">
 			var temp = "<{$Think.get.name}>";
+			/*console.log("<{$grades[4]['number']}>"*4);*/
 			$(document).ready(function()
 			{
 				if (temp != "")

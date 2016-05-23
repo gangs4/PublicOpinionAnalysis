@@ -43,6 +43,7 @@ class DataAnalysisController extends BaseController {
         $this->assign('word',json_encode($lda[1]));
         $this->assign('model',json_encode($lda[0]));
         $this->display();
+        //var_dump($data);
     }
     //以下都是调用的函数
     public function DelSomeWord($str)

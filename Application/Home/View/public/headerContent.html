@@ -1,17 +1,26 @@
 <div class="header-container">
     <div class="inav">
+        <div class="header_top row">
+            <div class="hitlogo col-md-3" style="padding: 0px"></div>
+            <div class="ourlogo col-md-3"><a href="__MODULE__/index">校园舆情分析</a></div>
+        </div>
         <nav class="navbar navbar-inverse navbar-embossed" style="border-radius: 0px" role="navigation">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
                     <span class="sr-only">Toggle navigation</span>
                 </button>
-                <a class="navbar-brand" href="__MODULE__/index">Public Opinion Analysis</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse-01">
                 <ul class="nav navbar-nav navbar-left">
                     <li class="fake"><a href="#fakelink"></a></li>
                     <li class="dropdown">
+                        <a href="__MODULE__/index">首页</a>
+                    </li>
+                    <li class="dropdown">
                         <include file="NewWeibo:headerList"/>
+                    </li>
+                    <li class="dropdown">
+                        <include file="NewWeibo:headerList2"/>
                     </li>
                     <li class="dropdown">
                         <include file="Zhihu:headerList"/>

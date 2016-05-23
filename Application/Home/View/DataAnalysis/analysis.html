@@ -8,57 +8,6 @@
 </block>
 <block name="content">
 	<script type="text/javascript">
-	$(function () {
-		$('#polar').highcharts({
-		            
-		    chart: {
-		        polar: true,
-		        type: 'line'
-		    },
-		    
-		    title: {
-		        text: '性格分析',
-		        x: -80
-		    },
-		    
-		    pane: {
-		    	size: '80%'
-		    },
-		    
-		    xAxis: {
-		        categories: ['1', '2', '3', '4', 
-		                '5'],
-		        tickmarkPlacement: 'on',
-		        lineWidth: 0
-		    },
-		        
-		    yAxis: {
-		        gridLineInterpolation: 'polygon',
-		        lineWidth: 0,
-		        min: 0
-		    },
-		    
-		    tooltip: {
-		    	shared: true,
-		        pointFormat: '<span style="color:{series.color}"><b>{point.y:,.0f}</b><br/>'
-		    },
-		    
-		    legend: {
-		        align: 'right',
-		        verticalAlign: 'top',
-		        y: 70,
-		        layout: 'vertical'
-		    },
-		    
-		    series: [{
-		        name: 'username',
-		        data: [19, 6, 35, 17, 10],
-		        pointPlacement: 'on'
-		    }]
-		
-		});
-	});
-
 	var cloud = JSON.parse('<{$word}>');
 	var word_list = cloud.map((x) => ({text: x[0], weight: x[1]}));
 	console.log(word_list);
@@ -86,18 +35,104 @@
 			<a href="##"><{$username}></a>
 		</div>
 	</div>
-	<div id="polar" style="min-width:700px;height:400px">
-	</div> 
+	 
 	</br>
 	<div class="row container">
 		<div id="wordcloud" class="col-md-6" style="background-color:white; height: 600px; width: 50%; font-family:Microsoft Yahei"></div>
 
 	<div id="bubble_charts" class="col-md-6" style="background-color:white"></div>
 	</div>
+	<div id="charts" style="height: 600px; width: 900px">		
+	</div>
+	<script type="text/javascript">
+    	function getLocalTime(nS) {     
+	        return new Date(parseInt(nS) * 1000).toLocaleString();
+	    }   
+
+		function FindStr(str1, str2){
+		    var s = str1.indexOf(str2);
+		    return(s);
+		}
+
+    	var temp = <{$emotion}>;
+    	console.log(temp);
+
+    	var time_data = new Array();
+    	var step = (temp['end'] - temp['begin'])/9;
+    	
+        for(var i = 0; i < 10; i++)
+    	{
+    		time_data[i] = temp['begin'] + i * step;
+    	}
+    	
+    	var time_str = new Array();
+
+    	for (var i = 0; i < 10; i++) {
+    		time_str[i] = getLocalTime(time_data[i]);
+    		time_str[i] = time_str[i].slice(0, FindStr(time_str[i]," "));
+    	};
+
+		$(function () {
+    $('#charts').highcharts({
+        chart: {
+            type: 'area'
+        },
+        title: {
+            text: '情感走势图'
+        },
+        subtitle: {
+            text: '来源: zhihu.com'
+        },
+        xAxis: {
+            categories: time_str,
+            tickmarkPlacement: 'on',
+            title: {
+                enabled: false
+            }
+        },
+        yAxis: {
+            title: {
+                text: 'Percent'
+            }
+        },
+        tooltip: {
+            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.percentage:.1f}%</b> ({point.y:,.0f} millions)<br/>',
+            shared: true
+        },
+        plotOptions: {
+            area: {
+                stacking: 'percent',
+                lineColor: '#ffffff',
+                lineWidth: 1,
+                marker: {
+                    lineWidth: 1,
+                    lineColor: '#ffffff'
+                }
+            }
+        },
+        series: [{
+		            name: 'Happy',
+		            data: temp['happy']
+		        }, {
+		            name: 'Sad',
+		            data: temp['sad']
+		        }, {
+		            name: 'Fear',
+		            data: temp['fear']
+		        }, {
+		            name: 'Angry',
+		            data: temp['angry']
+		        }, {
+		            name: 'NONE',
+		            data: temp['NONE']
+		        }]
+    });
+});  
+	</script>  
 </div>
 
 <script type="text/javascript">
-		var bubble_data = JSON.parse('<{$model}>');
+		var bubble_data = JSON.parse('<{$model}>'); 
 
 		var bubble_array = ["army","sport","tech","entrepreneurship","cartoon","constellation","game","education","travelPhotoFood"];
 
