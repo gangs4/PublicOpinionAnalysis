@@ -66,10 +66,20 @@ class AnswerModel extends Model {
 		{
 			$arrWord = $this->divier($ans,2);
 		}
+		$countEmotion = $this->CountE($ans);
 		// dump($arrWord);
 		$arrEmotion = $this->EmotionAnalysis($ans);
-		$AnalysisData = array($arrWord,$arrEmotion);
+		$AnalysisData = array($arrWord,$arrEmotion,$countEmotion);
 		return $AnalysisData;
+	}
+	private function CountE($ans)
+	{
+		$lenth = count($ans);
+		$arr = array();
+		foreach ($ans as $key => $value) {
+			$arr[trim($value['emotion'])] += 1;
+		}
+		return $arr;
 	}
 	private function EmotionAnalysis($ans)
 	{
