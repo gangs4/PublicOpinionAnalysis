@@ -91,6 +91,7 @@ class NewWeiboController extends BaseController {
 
         $this->display();
         // dump($cosdis);
+        dump($cosdis);
     }
 
     //以下为添加数据的脚本 php5.6

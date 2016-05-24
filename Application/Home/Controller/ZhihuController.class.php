@@ -59,7 +59,7 @@ class ZhihuController extends BaseController {
 
         $this->assign('emotion',json_encode($AnalysisData[1]));
         $this->display('question');
-        //dump($AnalysisData[0]);
+        dump($data[0]);
     }
  
     public function relation()

@@ -30,11 +30,11 @@ h3{
 
 * html{background-image:url(about:blank);background-attachment:fixed;} /**修正IE6滚动时振动bug **/
 
-a {outline:none;text-decoration:none;hide-focus: expression(this.hideFocus=true);}
+a {outline:none;text-decoration:none;hide-focus: expression(this.hideFocus=true);font-family: "Microsoft Yahei"}
 a:link {color:#666;}
 a:active {color:#D91018;}
 a:hover {color:#D91018;}
-a:visited {color:#999;}
+a:visited {color:#FFF;}
 
 #header,.wrap,#footer {	width: 980px; margin:0 auto;}
 #header {
