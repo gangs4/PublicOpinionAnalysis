@@ -38,11 +38,11 @@
 	 
 	</br>
 	<div class="row container">
-		<div id="wordcloud" class="col-md-6" style="background-color:white; height: 600px; width: 50%; font-family:Microsoft Yahei"></div>
+		<div id="wordcloud" class="col-md-6" style="background-color:white; height: 600px; width: 50%; font-family:Microsoft Yahei; border:1px solid #d1d1d1"></div>
 
-	<div id="bubble_charts" class="col-md-6" style="background-color:white"></div>
+	<div id="bubble_charts" class="col-md-6" style="background-color:white; border:1px solid #d1d1d1"></div>
 	</div>
-	<div id="charts" style="height: 600px; width: 900px">		
+	<div id="charts" style="height: 600px; width: 100%">		
 	</div>
 	<script type="text/javascript">
     	function getLocalTime(nS) {     
@@ -144,7 +144,7 @@
 
 		//console.log(bubble_temp);
 
-		var diameter = 600,                                 
+		var diameter = 590,                                 
 		    color = d3.scale.category20();                
 		   
 		var bubble = d3.layout.pack()                       
