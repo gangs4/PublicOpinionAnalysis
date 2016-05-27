@@ -95,19 +95,151 @@
 			<h3><{$question_name}></h3>
 			<p><{$question_description}></p>
 		</div>
+        <div class="YN">
+            <div id="YesAndNo">
+            </div>
+            <div class="YesNoTitle">
+                <div class="leftTitle">赞成</div>
+                <div class="rightTitle">反对</div>
+            </div>
+        </div>
 		<div id="charts" style="width:100%; height: 400px; margin: 5px auto">
 		</div>
-		<div class="bubbleDIV">
-			<div class="flashwords">
-				<div class="round"></div>
-				<div class="timeAxis">
-					<div class="axis">
-					</div>
-				</div>
-			</div>
-		</div>
+		<div class="c2 row">
+            <div class="bubbleDIV col-md-6">
+                <div class="flashwords">
+                    <div class="round"></div>
+                    <div class="timeAxis">
+                        <div class="axis">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" id="donuts">
+            </div>  
+            <script type="text/javascript">
+                var emotionPercent = JSON.parse('<{$emotionPercent}>');
+                console.log(emotionPercent);
+                var ePdata = new Array();
+                var tempn = 0;
+                for(var key in emotionPercent){
+                    ePdata[tempn] = emotionPercent[key];
+                    tempn++;
+                }
+                var add = 0;
+                for (var i = 0; i < ePdata.length; i++)
+                {
+                    add += ePdata[i];
+                }
+                for (var i = 0; i < ePdata.length; i++)
+                {
+                    ePdata[i] = parseFloat(((ePdata[i]/add) * 100).toFixed(2));
+                }
+                
+                var cateTemp = new Array();
+                var Y = 0;
+
+                for(var X in emotionPercent){
+                    cateTemp[Y] = X;
+                    Y++; 
+                }
+
+                var dataTemp = new Array();
+                for (var i = 0; i < ePdata.length; i++) {
+                    dataTemp[i] = {y:ePdata[i]};
+                }
+                console.log(dataTemp);
+
+                $(function () {
+                    var colors = Highcharts.getOptions().colors,
+                    categories = cateTemp,
+                    name = 'Browser brands',
+                    data = dataTemp;
+
+                    var typeData = [];
+                    for (var i = 0; i < data.length; i++) {
+                        typeData.push({
+                            name: categories[i],
+                            y: data[i].y,
+                            color: data[i].color
+                        });
+                    }
+
+                    $('#donuts').highcharts({
+                        chart: {
+                            type: 'pie'
+                        },
+                        title: {
+                            text: '情感分布图'
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Total percent market share'
+                            }
+                        },
+                        plotOptions: {
+                            pie: {
+                                innerSize: '50%',
+                                shadow: false,
+                                center: ['50%', '50%'],
+                            }
+                        },
+                        tooltip: {
+                            valueSuffix: '%'
+                        },
+                        dataLabels: {
+                            enabled: true,
+                            distance: -110,
+                            formatter: function(){},
+                            style: {
+                                fontSize: "20px"
+                            }
+                        },
+                        series: [{
+                            name: 'Browsers',
+                            data: typeData,
+                            size: '100%',
+                            dataLabels: {
+                                formatter: function() {
+                                    return this.y > 5 ? this.point.name : null;
+                                },
+                                color: 'white',
+                                distance: -30
+                            }
+                        }]
+                    });
+                });
+
+var yes = emotionPercent['happy'];
+var no = emotionPercent['sad'] + emotionPercent['angry'];
+var yesPer = yes / (yes + no);
+var noPer = no / (yes + no);
+console.log(yesPer);
+console.log(noPer);
+
+
+var addYN = "<div class=\"progress\"><div class=\"progress-bar progress-bar-success\" style=\"width:" + (yesPer*100).toString() + "%" + ";\">"+(yesPer*100).toFixed(2).toString()+"%"+"</div><div class=\"progress-bar progress-bar-danger\" style=\"width:" + (noPer*100).toString() + "%" + ";\">"+(noPer*100).toFixed(2).toString()+"%"+"</div></div>";
+var YesNo = $("#YesAndNo").html(addYN);
+            </script>    
+        </div>
 	</div>
+    <div class="answers container">
+        <volist name="answers" id="vol">
+            <div class="answersheet">
+                <div class="answer_top">
+                    <div class="answer_user"><{$vol.name}></div>
+                    <div class="answer_emotion"><{$vol.emotion}></div>
+                    <!-- <div class="answer_avatar"><img src="<{$vol.avatar_url}>"></div> -->
+                    <div class="answer_like"><{$vol.like_number}>人赞同</div>
+                </div>
+                <div class="answer_content"><{$vol.content}></div>   
+                <div class="answer_time"><{$vol.time}></div>     
+            </div>
+        </volist>
+    </div>
 	<script type="text/javascript">
+
+    var heightOfDiv = $(".answersheet");
 
 	var dat_temp = JSON.parse('<{$keywords}>');
 
@@ -153,7 +285,7 @@
     for (var i = 0; i < dateA.length - 1; i++) {
     	date_list[i] = new Object();
     	date_list[i].end = dateA[i+1];
-    	date_list[i].left = String(10 + 88 * i);
+    	date_list[i].left = String(10 + 70 * i);
     	date_list[i].time = dateA[i];
     	date_list[i].title = String(738 + 5 * i);
     };

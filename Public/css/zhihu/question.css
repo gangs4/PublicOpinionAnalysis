@@ -15,7 +15,6 @@ body{
 }
 
 .question{
-	border-bottom: 1px solid #A0A0A0;
 	padding: 8px 8px 10px 17px;
 }
 
@@ -75,7 +74,7 @@ a:visited {color:#FFF;}
 }
 
 .flashMap,
-.flashwords {width: 680px;}
+.flashwords {width: 50%;}
 table {
 	border-collapse:collapse;
 	width: 100%;
@@ -137,7 +136,6 @@ table th {height: 40px;line-height: 40px;text-align: left;}
 }
 .round {
 	float:left;
-	width:680px;
 	height:466px;
 	border:0px;
 	margin-top:0px;
@@ -170,7 +168,7 @@ table th {height: 40px;line-height: 40px;text-align: left;}
 	height:19px;
 	position:relative;
 	top: 400px;
-	left: 50px;
+	left: -10px;
 }
 .axisPoint {
 	width:11px;
@@ -178,8 +176,8 @@ table th {height: 40px;line-height: 40px;text-align: left;}
 }
 .axisTime {
 	position:absolute;
+	left: 0px;
 	font-size:12px;
-	top:20px;
 	width:32px;
 	color:#666
 }
@@ -206,5 +204,56 @@ table th {height: 40px;line-height: 40px;text-align: left;}
 }
 
 
+.answers{
+	background-color: white;
+	width: 64%;
+}
 
+.answersheet{
+	border-top: 1px solid #dadada;
+	padding-top: 15px;
+	padding-bottom: 15px; 
+	font-family: "Microsoft Yahei";
+	font-size: 12px;
+}
 
+.answer_emotion{
+	float: right;
+	color: white;
+	background-color: #0086D1;
+	width: 60px;
+	height: 20px;
+	line-height: 18px;
+	text-align: center;
+}
+
+.answer_like, .answer_time{
+	margin-top: 5px; 
+	color: #b1b1b1;
+}
+
+.answer_content{
+	line-height: 25px;
+}
+
+.leftTitle{
+	position: relative;
+	float: left;
+	top: -23px;
+}
+
+.rightTitle{
+	position: relative;
+	float: right;
+	top: -23px;
+}
+
+.YN{
+	padding-top: 20px;
+	border-top: 2px solid #DADADA;
+}
+
+.YesNoTitle{
+	padding-bottom: 10px;
+	border-bottom: 2px solid #DADADA; 
+}

@@ -6,7 +6,7 @@
     <script src="__PUBLIC__/js/jquery.js"></script>
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/NewWeibo/index.css">
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/NewWeibo/list_all.css">
-    <script src="__PUBLIC__/js/d3.min.js"></script>
+    <script src="__PUBLIC__/js/bubble/d3.min.js"></script>
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/jqcloud.css" />
     <script type="text/javascript" src="__PUBLIC__/js/jqcloud-1.0.4.js"></script>
 </block>
@@ -47,7 +47,7 @@
 		<div class="FS">
 			<div class="likely_friends row">
 				<div class="span">
-					<span>相似好友推荐：</span>
+					<span>与TA相似的人</span>
 				</div>		
 			</div>
 		</div>		
@@ -57,7 +57,7 @@
 
 
         var maxL = friends_temp.length;
-        maxL = (maxL > 12) ? 12 : maxL;
+        maxL = (maxL > 4) ? 4 : maxL;
 
         var tempArray = new Array();
         for (var i = 0; i < maxL; i++) {
@@ -68,10 +68,10 @@
 		var parent_div = $(".likely_friends");
         for (var i = 0; i < maxL; i++)
         {
-        	var div = $('<div class="friend col-md-3"></div>');
-        	var div_img = $('<div class="img_div"></div>');
+        	var div = $('<div class="friend row"></div>');
+        	var div_img = $('<div class="img_div col-md-3"></div>');
         	var image = $('<img src="' + friends_temp[i][0].avatar_hd + '"/>');
-        	var friend_detail = $('<div class="friend_detail"></div>');
+        	var friend_detail = $('<div class="friend_detail col-md-9"></div>');
         	var fname = $('<div class="f_name"><a href="__URL__/detail?id=' + friends_temp[i][0].id + '">' + friends_temp[i][0].real_name + '</a></div>');
         	var fsame = $('<div class="f_same">' + "相似度：" + tempArray[i] + "%" + '</div>');
         	div_img.append(image);
@@ -114,8 +114,8 @@
 			bubble_temp[bubble_array[i]['model_name']] = parseFloat(bubble_data[i]);
 		}
 
-		var diameter = 600,                                 
-		color = d3.scale.category20();                
+		var diameter = 500,                                 
+		color = d3.scale.category20c();                
 
 		var bubble = d3.layout.pack()                       
 		.sort(null)                                    
@@ -125,7 +125,7 @@
 		var svg = d3.select("body")
 		.selectAll("#bubble_charts")
 		.append("svg")           
-		.attr("width", diameter)
+		.attr("width", diameter+100)
 		.attr("height", diameter);  
 
 		var result = d3.entries(bubble_temp);

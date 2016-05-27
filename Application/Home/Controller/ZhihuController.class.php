@@ -48,7 +48,7 @@ class ZhihuController extends BaseController {
             $temp[$key] = $value['time'];
         }
         array_multisort($temp,$answers);
-        
+              
         // 获取个时间段关键词 提取情感
         $model_answer = D('Answer');
         $AnalysisData = $model_answer->analysis($answers);
@@ -62,7 +62,7 @@ class ZhihuController extends BaseController {
 
         // 新增 圆环图数据（整数），全部回答（按时间升序排的
         $this->assign('emotionPercent',json_encode($AnalysisData[2]));
-        $this->assign('answers',json_encode($answers));
+        $this->assign('answers',$answers);
 
         $this->display('question');
     }

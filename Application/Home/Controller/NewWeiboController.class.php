@@ -90,8 +90,7 @@ class NewWeiboController extends BaseController {
         $this->assign('emotion',$emotion_data);
 
         $this->display();
-        // dump($cosdis);
-        dump($cosdis);
+        // dump($emotion_data);
     }
 
     //以下为添加数据的脚本 php5.6

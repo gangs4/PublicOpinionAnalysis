@@ -230,11 +230,11 @@ img{
 }
 
 .list_person{
-	flex: 1;
+	flex: 3;
 }
 
 .FS{
-	flex: 6;
+	flex: 8;
 	border: 2px solid #eaeaea;
 	background-color: #fff;
 }
@@ -265,12 +265,19 @@ img{
 .friend img{ 
 	height: 60px;
 	width: 60px;
+	margin: 10px;
+	margin-left: -5px;  
 }
 
 .likely_friends .span{
 	height: 40px;
 	font-family: "Microsoft YaHei";
 	font-size: 30px;
+}
+
+.friend_detail{
+	padding-left: 24px;
+	padding-top: 10px;
 }
 
 

@@ -184,6 +184,8 @@ body{
     -o-background-size: cover;
     background-size: cover;
     background-image: url('.././img/hit.jpg');
+    background-repeat:no-repeat; 
+    background-attachment:fixed;
 }
 
 .search{
@@ -304,7 +306,6 @@ div.jqcloud span.vertical {
     background:url("../img/HITlogo.png");
     background-repeat:no-repeat;
     height:80px;
-    width:314px;
     text-align:center;
     position: relative;
     left: 40px;
@@ -333,3 +334,6 @@ div.jqcloud span.vertical {
     color: white;
 }
 
+.navbar-inverse .navbar-nav > .open > .dropdown-menu {
+    background-color: #0086D1;
+}

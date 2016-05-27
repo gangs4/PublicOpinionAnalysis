@@ -1,8 +1,8 @@
-	var diameter = 400,
+	var diameter = 350,
 		format = d3.format(",d");
 	var color = d3.scale.category20();
 	var pack = d3.layout.pack()
-		.size([diameter+100, diameter ])
+		.size([diameter, diameter])
 		.sort(null)
 		.padding(1.5)
 		.value(function(d) { return d.size; });
