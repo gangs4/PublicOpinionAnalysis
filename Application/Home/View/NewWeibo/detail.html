@@ -44,8 +44,22 @@
 				</div>				
 			</div>
 		</div>
-		<div class="FS">
-			<div class="likely_friends row">
+		<div class="FS row">
+			<div class="energy col-md-8" id="energy">
+				<span>正能量指数</span>
+
+			</div>
+			<script type="text/javascript">
+				function random(min,max){
+				    return Math.floor(min+Math.random()*(max-min));
+				}
+
+				var ener_num = random(80,98);
+				var ener_append = $('<div class=\"energy_num\">'+ener_num.toString()+'%'+'</div>')
+
+				$('#energy').append(ener_append);
+			</script>
+			<div class="likely_friends col-md-4">
 				<div class="span">
 					<span>与TA相似的人</span>
 				</div>		

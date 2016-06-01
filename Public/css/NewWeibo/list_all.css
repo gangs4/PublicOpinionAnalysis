@@ -259,7 +259,6 @@ img{
 .friend{
 	border: 2px solid #eaeaea;
 	margin: 3px;
-	width: 24%;
 }
 
 .friend img{ 
@@ -280,4 +279,29 @@ img{
 	padding-top: 10px;
 }
 
+.energy_star img{
+	width: 20px;
+	height: 20px;
+}
 
+.likely_friends{
+	border: 1px solid #eaeaea;
+}
+
+.energy{
+	padding-top: 64px;
+}
+
+.energy span{
+	font-size: 40px;
+	padding: 0 auto;
+	color: #0086D1;
+	font-family: "Microsoft YaHei";
+}
+
+.energy_num{
+	font-size: 128px;
+	text-align: center;
+	color: #E5004F;
+	font-family: "Microsoft YaHei"
+}
