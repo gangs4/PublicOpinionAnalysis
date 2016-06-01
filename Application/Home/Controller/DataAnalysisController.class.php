@@ -20,20 +20,24 @@ class DataAnalysisController extends BaseController {
     public function analysis()
     {
         $data = $this->analysis_emotion();
-
+        // var_dump($data);
+        if (!isset($text)) {
+            $text = $_POST['text'];
+        }
         // LDA模块
         $fileDir = "./temp/" ;
         $t = time();
-        $fileName = $t."_text";
+        $fileName = $t."_text.in";
 
-        $myfile = fopen($fileDir.$fileName.".in", "w") or die("Unable to open file!");
+        $myfile = fopen($fileDir.$fileName, "w") or die("Unable to open file in dataAnalysis  LDA!");
         fwrite($myfile, $text);
         fclose($myfile);
+        // unlink($fileDir.$fileName);
         
         // dump($fileName);
-        // $lda = $emotion->LDA($fileName);
-        $lda = array(array("0.2214170692431562","0.11996779388083736" , "0.061996779388083734" , "0.09098228663446055" , "0.06924315619967794" , "0.047504025764895326" , "0.07648953301127213" , "0.25764895330112725" , "0.05475040257648953" ),
-            array(array('中国',3619816463523),array('国家',2201543183082),array("重要",2181839519095)));
+        $emotion = A("emotion");
+        $lda = $emotion->LDA($fileName);
+        // $lda = array(array("0.2214170692431562","0.11996779388083736" , "0.061996779388083734" , "0.09098228663446055" , "0.06924315619967794" , "0.047504025764895326" , "0.07648953301127213" , "0.25764895330112725" , "0.05475040257648953" ),array(array('中国',3619816463523),array('国家',2201543183082),array("重要",2181839519095)));
 
         // dump($lda);
         $Recommand = D('StudentInfo');
@@ -58,6 +62,7 @@ class DataAnalysisController extends BaseController {
         if (!isset($text)) {
             $text = $_POST['text'];
         }
+        // var_dump($text);
 
         $time_arr = array();
         preg_match_all('/(\d{1,2}分钟前)|(\d{1,2}月\d{1,2}日 \d\d:\d\d)|(今天 \d{2}:\d{2})|(\d{4}-\d{2}-\d{2} \d{2}:\d{2})/', $text , $time_arr);
