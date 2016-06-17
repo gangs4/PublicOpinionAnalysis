@@ -74,18 +74,21 @@
             }
         },
         series: [{
-		            name: 'Happy',
-		            data: temp['happy\r\n']
-		        }, {
-		            name: 'Sad',
-		            data: temp['sad\r\n']
-		        }, {
-		            name: 'Fear',
-		            data: temp['fear\r\n']
-		        }, {
-		            name: 'Angry',
-		            data: temp['angry\r\n']
-		        }]
+                            name: 'Sad',
+                            data: temp['sad\r\n']
+                            }, {
+                            name: 'Angry',
+                                data: temp['angry\r\n']
+                            }, {
+                            name: 'Happy',
+                                data: temp['happy\r\n']
+                            }, {
+                            name: 'Fear',
+                                data: temp['fear\r\n']   
+                            },{
+                            name: 'Neutral',
+                            data: temp['NONE\r\n']  
+                            }]
     });
 });  
 	</script>  
@@ -101,13 +104,17 @@
             <div class="YesNoTitle">
                 <div class="leftTitle">赞成</div>
                 <div class="rightTitle">反对</div>
-            </div>
+            </div> 
         </div>
-		<div id="charts" style="width:100%; height: 400px; margin: 5px auto">
-		</div>
+                        <div style="border-bottom: 2px solid #dadada; margin-bottom: 60px;">
+                            <div id="charts" style="width:100%; height: 400px; margin: 5px auto;">
+                            </div>
+                        </div>
+		
 		<div class="c2 row">
             <div class="bubbleDIV col-md-6">
                 <div class="flashwords">
+                <span style="text-align: center; position: relative; left: 70%;">舆情走势</span>
                     <div class="round"></div>
                     <div class="timeAxis">
                         <div class="axis">
@@ -170,7 +177,7 @@
                             type: 'pie'
                         },
                         title: {
-                            text: '情感分布图'
+                            text: '情感占比图'
                         },
                         yAxis: {
                             title: {
@@ -218,7 +225,7 @@ console.log(yesPer);
 console.log(noPer);
 
 
-var addYN = "<div class=\"progress\"><div class=\"progress-bar progress-bar-success\" style=\"width:" + (yesPer*100).toString() + "%" + ";\">"+(yesPer*100).toFixed(2).toString()+"%"+"</div><div class=\"progress-bar progress-bar-danger\" style=\"width:" + (noPer*100).toString() + "%" + ";\">"+(noPer*100).toFixed(2).toString()+"%"+"</div></div>";
+var addYN = "<div class=\"progress\"><div class=\"progress-bar progress-bar\" style=\"width:" + (yesPer*100).toString() + "%" + ";\">"+(yesPer*100).toFixed(2).toString()+"%"+"</div><div class=\"progress-bar progress-bar-warning\" style=\"width:" + (noPer*100).toString() + "%" + ";\">"+(noPer*100).toFixed(2).toString()+"%"+"</div></div>";
 var YesNo = $("#YesAndNo").html(addYN);
             </script>    
         </div>

@@ -57,11 +57,33 @@ class ZhihuController extends BaseController {
         $this->assign('question_description',$data[0]['description']);
 
         $this->assign('keywords',json_encode($AnalysisData[0]));
-
         $this->assign('emotion',json_encode($AnalysisData[1]));
 
+        //change emotion NONE to neutral
+        $AnalysisData[2]["neutral"] = $AnalysisData[2]["NONE"];
+        unset($AnalysisData[2]["NONE"]);
         // 新增 圆环图数据（整数），全部回答（按时间升序排的
         $this->assign('emotionPercent',json_encode($AnalysisData[2]));
+        // var_dump($AnalysisData[1]);
+        // var_dump($answers);
+        // for ($i=0; $i < count($answers); $i++) { 
+        //     # code...
+        //     var_dump($answers[i]);
+        //     if ($answers[i]['emotion'] == "NONE")
+        //     {
+        //         $answers[i]['emotion'] = 'neutral';
+        //     }
+            
+        // }
+        foreach ($answers as $key => $value) {
+            # code...
+            if (preg_match('/.*NONE.*/',$value["emotion"]))
+            {
+                $answers[$key]['emotion'] = 'neutral';
+                // var_dump($answers[$key]);
+            }
+            // var_dump($value["emotion"]);
+        }
         $this->assign('answers',$answers);
 
         $this->display('question');

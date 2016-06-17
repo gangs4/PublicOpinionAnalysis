@@ -8,9 +8,9 @@ class StudentInfoModel extends Model {
 	{
 		if(isset($grade))
 			if($grade == 'all')
-				$arr = $this->limit($page*30,$limit)->select();
+				$arr = $this->limit($page*30,$limit)->order("lda_pro desc")->select();
 			else
-				$arr = $this->where("grade = $grade")->limit($page*30,$limit)->select();
+				$arr = $this->where("grade = $grade")->limit($page*30,$limit)->order("lda_pro desc")->select();
 		else
 			$arr = $this->field('grade,count(*) as number')->group('grade')->select();;	
 		return $arr;			

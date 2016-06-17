@@ -13,6 +13,39 @@ class EmotionController extends Controller {
         echo "<br /> ====================================== <br / >";
     }
 
+    public function test2()
+    {
+        $str = "
+全部
+ì热门
+更多 c
+fg
+c
+一度燃冰
+一度燃冰
+4月5日 22:46 来自 魅蓝 note
+//@我的前任是极品:转需～！
+@买买小天使
+｢男生穿好看的衣服，有哪些男装服饰品牌值得推荐？ ｣
+长图 长图 长图 长图 长图 长图 长图 长图 长图
+5133
+ 2247
+1545
+";
+
+    $arr = $this->analysis($str);
+    dump($arr);
+
+    $arr = $this->analysis($str);
+    dump($arr);
+
+    $arr = $this->analysis($str);
+    dump($arr);
+    
+    $arr = $this->analysis($str);
+    dump($arr);
+    }
+
     //这是一个可重用的模块,只要更改输入就好,里面的content是要分析的文本,返回data数组
     public function analysis($content=null)
     {
