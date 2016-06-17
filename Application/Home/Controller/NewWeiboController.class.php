@@ -60,6 +60,8 @@ class NewWeiboController extends BaseController {
         //lda模块名称
         $ldamodel = D("Ldamodel");
         $lda = $ldamodel->select();
+        // var_dump($lda);
+        $lda[8]["model_name"] = '旅游';
         $this->assign('lda',json_encode($lda));
 
         //个人信息
