@@ -143,7 +143,7 @@ c
         fclose($myfile);
         $seg = "python ./Public/seg.py " . $fileDir.$fileName;
         $last_line = exec($seg,$ret,$ans);
-        unlink($fileDir.$fileName);
+        // unlink($fileDir.$fileName);
         // $ans = join($last_line);
         // var_dump($ans);
         return $last_line;
@@ -194,6 +194,7 @@ c
 
         /*local ltp seg*/
         $response = $this->seg($content);
+        var_dump($response);
 
         $myfile2 = fopen($fileDir.$fileName.".out.txt", "w") or die("Unable to open file!");
         fwrite($myfile2, $response);
@@ -205,7 +206,7 @@ c
         $cut = "python3 ./Public/LDA/cut.py ".$fileDir.$fileName;
         $dataFile = $fileName.".out.txt";
         $gzip = "gzip -kf ".$fileDir.$dataFile;
-        $java =" /usr/lib/jvm/jdk1.8.0/bin/java -jar ./Public/LDA/lda.jar  -inf -niters 50 -twords 20  -dir ".$fileDir." -dfile ".$fileName.".out.txt.gz";
+        $java =" /usr/lib/jvm/jdk1.8.0/bin/java -jar ./Public/LDA/lda.jar  -inf -niters 50 -twords 100  -dir ".$fileDir." -dfile ".$fileName.".out.txt.gz";
         // echo $java."<br />";
         $gunzip = "gunzip -fk ".$fileDir.$dataFile."*.gz";
         $op = array($gzip,$java,$gunzip );
@@ -263,7 +264,7 @@ c
             // echo "<br />";
             if (strncmp($oneline, $flag, 7) == 0)
             {
-                for ($i=0; $i < 18; $i++) {
+                for ($i=0; $i < 60; $i++) {
                     # code...｀
                     $oneline = fgets($fin);
                     array_push($words, $oneline);

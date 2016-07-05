@@ -50,6 +50,7 @@ class NewWeiboController extends BaseController {
 
         $grade_info = $model_student->ShowGrade();
         $this->assign('students',$all_student);
+        // var_dump($all_student);
         $this->assign('grades',$grade_info);
         $this->display();
     }

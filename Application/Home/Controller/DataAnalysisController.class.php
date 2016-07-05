@@ -19,7 +19,8 @@ class DataAnalysisController extends BaseController {
 
     public function analysis()
     {
-        $data = $this->analysis_emotion();
+        // $data = $this->analysis_emotion();
+        $data = NULL;
         // var_dump($data);
         if (!isset($text)) {
             $text = $_POST['text'];

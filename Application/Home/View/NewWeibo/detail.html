@@ -54,7 +54,10 @@
 				    return Math.floor(min+Math.random()*(max-min));
 				}
 
-				var ener_num = random(80,98);
+				var ener_num = 70;
+				var student_id = <{$info.school_id}>;
+				var number = student_id % 100;
+				ener_num = ener_num + number;
 				var ener_append = $('<div class=\"energy_num\">'+ener_num.toString()+'%'+'</div>')
 
 				$('#energy').append(ener_append);
