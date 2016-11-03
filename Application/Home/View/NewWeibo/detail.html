@@ -58,6 +58,10 @@
 				var student_id = <{$info.school_id}>;
 				var number = student_id % 100;
 				ener_num = ener_num + number;
+				while (ener_num > 100)
+				{
+					ener_num = ener_num - 5;
+				}
 				var ener_append = $('<div class=\"energy_num\">'+ener_num.toString()+'%'+'</div>')
 
 				$('#energy').append(ener_append);
