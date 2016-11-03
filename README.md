@@ -1,6 +1,10 @@
 PublicOpinionAnalysis
 ---
 
+##安装
+thinkphp版本 3.2.3
+配置配置文件 /Application/Home/Conf/config.php
+
 ##Final##
 
 ####在校生模块####
